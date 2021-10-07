@@ -38,7 +38,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
     {{-- @livewireStyles --}}
     <div class="wrapper">
 

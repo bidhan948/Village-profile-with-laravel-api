@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MarriageController extends Controller
 {
@@ -20,6 +21,7 @@ class MarriageController extends Controller
     {
         $validate = $request->validate(['name' => 'required|unique:marriages']);
         marriage::create($validate);
+        toast('वैवाहिक स्थिती थप्न सफल भयो ','success');
         return redirect()->back();
     }
     
@@ -34,15 +36,17 @@ class MarriageController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             Rule::unique('marriages')
-                ->ignore($marriage)
+            ->ignore($marriage)
         ]);
+        toast('वैवाहिक स्थिती सच्याउन सफल भयो ','success');
         $marriage->update($validate);
-        return redirect()->back();
+        return redirect()->route('marriage.index');
     }
 
     public function destroy(marriage $marriage): RedirectResponse
     {
         $marriage->delete();
+        toast('वैवाहिक स्थिती हटाउन सफल भयो ','success');
         return redirect()->back();
     }
 }
