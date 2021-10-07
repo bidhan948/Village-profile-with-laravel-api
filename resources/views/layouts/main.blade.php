@@ -120,9 +120,15 @@
                             </a>
                             <ul class="nav nav-treeview" style="display: @yield('s_child')">
                                 <li class="nav-item">
-                                    <a href="{{route('marriage.index')}}" class="nav-link @yield('setting_active')">
+                                    <a href="{{route('marriage.index')}}" class="nav-link @yield('setting_marriage')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('वैवाहिक स्थिती') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('occupation.index')}}" class="nav-link @yield('setting_occupation')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('पेशा') }}</p>
                                     </a>
                                 </li>
                             </ul>

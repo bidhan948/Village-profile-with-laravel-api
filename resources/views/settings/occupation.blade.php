@@ -1,19 +1,19 @@
 @extends('layouts.main')
-@section('title', 'वैवाहिक स्थिती')
+@section('title', 'पेशा')
 @section('menu_open','menu-open')
 @section('s_child','block')
-@section('setting_marriage', 'active')
+@section('setting_occupation', 'active')
 @section('main_content')
 
     {{-- this is start of edit part --}}
-    @if (isset($marriage))
+    @if (isset($occupation))
         <div class="card text-sm mt-1">
             <div class="card-header">
                 <div class="card-text">
-                    <p class="mb-0">{{ __('वैवाहिक स्थिती सच्याउने') }}</p>
+                    <p class="mb-0">{{ __('पेशा सच्याउने') }}</p>
                 </div>
                 <div class=" card-body">
-                    <form method="post" action="{{ route('marriage.update', $marriage) }}">
+                    <form method="post" action="{{ route('occupation.update', $occupation) }}">
                         @csrf
                         @method('PUT')
                         <div class="row" style="margin-left:-30px;">
@@ -21,15 +21,15 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('वैवाहिक स्थिती') }} <span
+                                            {{ __('पेशा') }} <span
                                                 class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
-                                    <input type="text" value="{{ $marriage->name }}" name="name"
+                                    <input type="text" value="{{ $occupation->name }}" name="name"
                                         class="form-control  @error('name') is-invalid @enderror">
                                     @error('name')
                                         <p class="invalid-feedback" style="font-size: 1rem">
-                                            {{ __('वैवाहिक स्थितीको फिल्ड खाली छ ') }}
+                                            {{ __('पेशाको फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
@@ -50,12 +50,12 @@
         <div class="card-header my-2">
             <div class="row my-1">
                 <div class="col-md-6" style="margin-bottom:-5px;">
-                    <p class="">{{ __('वैवाहिक स्थितीको सुचिहरु') }}</p>
+                    <p class="">{{ __('पेशाको सुचिहरु') }}</p>
                 </div>
                 <div class="
                         col-md-6 text-right">
                         <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                            {{ __('वैवाहिक स्थिती थप्नुहोस') }}</a>
+                            {{ __('पेशा थप्नुहोस') }}</a>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('वैवाहिक स्थिती') }}</th>
+                        <th class="text-center">{{ __('पेशा') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -73,20 +73,20 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach ($marriages as $marriage)
+                    @foreach ($occupations as $occupation)
                         <tr>
                             <td class="text-center">{{ $i++ }}</td>
-                            <td class="text-center">{{ $marriage->name }}
+                            <td class="text-center">{{ $occupation->name }}
                             </td>
-                            <td class="text-center"><a href="{{ route('marriage.edit', $marriage) }}"
+                            <td class="text-center"><a href="{{ route('occupation.edit', $occupation) }}"
                                     class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
                                 <a href="#" class="btn-sm btn-danger"
                                     onclick="event.preventDefault();
-                                                                                                            document.getElementById('delete_marriage{{ $i }}').submit();">
+                                                                                                            document.getElementById('delete_occupation{{ $i }}').submit();">
                                     <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
                             </td>
-                            <form id="delete_marriage{{ $i }}"
-                                action="{{ route('marriage.destroy', $marriage) }}" method="POST" class="d-none">
+                            <form id="delete_occupation{{ $i }}"
+                                action="{{ route('occupation.destroy', $occupation) }}" method="POST" class="d-none">
                                 @method('DELETE')
                                 @csrf
                             </form>
@@ -97,26 +97,26 @@
         <!-- /.card-body -->
     </div>
 
-    {{-- modal for adding marriage status --}}
+    {{-- modal for adding occupation status --}}
     <div class="modal fade text-sm" id="modal-lg">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="">{{ __('वैवाहिक स्थिती थप्नुहोस') }}</h5>
+                    <h5 class="">{{ __('पेशा थप्नुहोस') }}</h5>
                     <button type=" button"
                         class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('marriage.store') }}">
+                    <form method="post" action="{{ route('occupation.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('वैवाहिक स्थिती') }} <span
+                                            {{ __('पेशा') }} <span
                                                 class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
@@ -124,7 +124,7 @@
                                         class="form-control  @error('name') is-invalid @enderror">
                                     @error('name')
                                         <p class="invalid-feedback" style="font-size: 1rem">
-                                            {{ __('वैवाहिक स्थितीको फिल्ड खाली छ ') }}
+                                            {{ __('पेशाको फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
@@ -146,7 +146,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    {{-- end of modal for adding marriage status --}}
+    {{-- end of modal for adding occupation status --}}
 @endsection
 
 @section('scripts')
