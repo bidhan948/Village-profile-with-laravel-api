@@ -81,7 +81,7 @@
                 <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span
-                    class="brand-text font-weight-light">hdfjkh</span>
+                    class="brand-text font-weight-light">{{auth()->user()->name}}</span>
             </a>
 
             <!-- Sidebar -->
@@ -94,7 +94,7 @@
                     </div>
                     <div class="info">
                         <a href="#"
-                            class="d-block">jfgvkfdj</a>
+                            class="d-block">{{auth()->user()->name}}</a>
                     </div>
                 </div>
 
@@ -110,7 +110,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview @yield('menu_open')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>
                                 <p class="px-2 font-weight-bold">
@@ -118,9 +118,9 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" style="display: none;">
+                            <ul class="nav nav-treeview" style="display: @yield('s_child')">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link @yield('setting_active')">
+                                    <a href="{{route('marriage.index')}}" class="nav-link @yield('setting_active')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('वैवाहिक स्थिती') }}</p>
                                     </a>
