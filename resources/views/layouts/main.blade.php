@@ -131,6 +131,12 @@
                                         <p class="px-2">{{ __('पेशा') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('education.index')}}" class="nav-link @yield('setting_education')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('शैक्षिकस्तर') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
