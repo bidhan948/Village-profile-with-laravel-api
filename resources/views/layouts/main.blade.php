@@ -137,6 +137,24 @@
                                         <p class="px-2">{{ __('शैक्षिकस्तर') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('disability_type.index')}}" class="nav-link @yield('setting_disability')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('अपाङ्गताको किसिम') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('disability_card.index')}}" class="nav-link @yield('setting_disability_card')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('अपाङ्गताको कार्ड किसिम') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('disability_tool.index')}}" class="nav-link @yield('setting_disability_tool')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('अपाङ्गताको साहायक सामग्रीहरु') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
