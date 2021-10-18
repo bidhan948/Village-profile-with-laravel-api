@@ -152,7 +152,25 @@
                                 <li class="nav-item">
                                     <a href="{{route('disability_tool.index')}}" class="nav-link @yield('setting_disability_tool')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('अपाङ्गताको साहायक सामग्रीहरु') }}</p>
+                                        <p class="px-2">{{ __('अपाङ्गताको साहायक सामग्री') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('foreign_country.index')}}" class="nav-link @yield('setting_foreign_country')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बाहिर गएको/बसेको ठाउँहरु ') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('foreign-settlement-reason.index')}}" class="nav-link @yield('setting_foreign_country_reason')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बाहिर बसोवास गर्नुको कारण') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('remitance.index')}}" class="nav-link @yield('setting_remitance')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('रेमिटेन्स') }}</p>
                                     </a>
                                 </li>
                             </ul>
