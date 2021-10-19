@@ -16,5 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('foreign_country', \App\Http\Controllers\Setting\ForeignCountryController::class);
         Route::resource('foreign-settlement-reason', \App\Http\Controllers\Setting\ForeignCountrySettlementReasonController::class);
         Route::resource('remitance', \App\Http\Controllers\Setting\RemitanceController::class);
+        Route::resource('drinking-water-source', \App\Http\Controllers\Setting\DrinkingwaterSourceController::class);
+        Route::resource('water-purify', \App\Http\Controllers\Setting\WaterPurifyController::class);
     });
 });

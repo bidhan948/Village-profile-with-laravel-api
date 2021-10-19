@@ -173,6 +173,18 @@
                                         <p class="px-2">{{ __('रेमिटेन्स') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('drinking-water-source.index')}}" class="nav-link @yield('setting_drinking_water_source')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('खानेपानीको स्रोत') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('water-purify.index')}}" class="nav-link @yield('setting_water_purify')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('पानी पिउन योग्य बनाउन') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
