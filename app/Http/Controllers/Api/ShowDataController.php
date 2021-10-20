@@ -10,6 +10,7 @@ use App\Models\education;
 use App\Models\marriage;
 use App\Models\occupation;
 use App\Models\Setting\animal;
+use App\Models\Setting\disease;
 use App\Models\Setting\drinkingwater_source;
 use App\Models\Setting\floor;
 use App\Models\Setting\foreign_country;
@@ -55,6 +56,7 @@ class ShowDataController extends Controller
         $data['walls'] = wall::select('id','name')->get();
         $data['services'] = service::select('id','name')->get();
         $data['health_services'] = health_service::select('id','name')->get();
+        $data['diseases'] = disease::select('id','name')->get();
 
         return response()->json($data, 200);
     }
