@@ -234,9 +234,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('training.index')}}" class="nav-link @yield('setting_training')">
+                                    <a href="{{route('wall.index')}}" class="nav-link @yield('setting_wall')">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-1">{{ __('तालिम') }}</p>
+                                        <p class="px-1">{{ __('भित्ता ') }}</p>
                                     </a>
                                 </li>
                             </ul>

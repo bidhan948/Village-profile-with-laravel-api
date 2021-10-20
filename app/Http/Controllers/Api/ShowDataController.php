@@ -21,6 +21,7 @@ use App\Models\Setting\remitance;
 use App\Models\Setting\roof;
 use App\Models\Setting\toilet_type;
 use App\Models\Setting\training;
+use App\Models\Setting\wall;
 use App\Models\Setting\waste_management;
 use App\Models\Setting\water_purify;
 use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ class ShowDataController extends Controller
         $data['floors'] = floor::all();
         $data['roofs'] = roof::all();
         $data['trainings'] = training::all();
+        $data['walls'] = wall::all();
 
         return response()->json($data, 200);
     }
