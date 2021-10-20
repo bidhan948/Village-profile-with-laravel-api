@@ -203,6 +203,12 @@
                                         <p class="px-1">{{ __('इन्धन') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('waste-management.index')}}" class="nav-link @yield('setting_waste_management')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('फोहोर व्यवस्थापन') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
