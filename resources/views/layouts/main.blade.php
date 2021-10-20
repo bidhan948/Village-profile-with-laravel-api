@@ -197,6 +197,12 @@
                                         <p class="px-1">{{ __('लिङ्ग') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('fuel.index')}}" class="nav-link @yield('setting_fuel')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('इन्धन') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

@@ -20,5 +20,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('water-purify', \App\Http\Controllers\Setting\WaterPurifyController::class);
         Route::resource('toilet-type', \App\Http\Controllers\Setting\ToiletTypeController::class);
         Route::resource('gender', \App\Http\Controllers\Setting\GenderController::class);
+        Route::resource('fuel', \App\Http\Controllers\Setting\FuelController::class);
     });
 });
