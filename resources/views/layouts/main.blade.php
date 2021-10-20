@@ -185,6 +185,12 @@
                                         <p class="px-1">{{ __('पानी पिउन योग्य बनाउन') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('toilet-type.index')}}" class="nav-link @yield('setting_toilet_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('चर्पी (शौचालय)') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
