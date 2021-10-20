@@ -215,6 +215,12 @@
                                         <p class="px-1">{{ __('जन्तु/जनावर वा पशुपंक्षि') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('material.index')}}" class="nav-link @yield('setting_material')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('सामानहरु') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

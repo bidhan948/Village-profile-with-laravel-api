@@ -23,5 +23,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('fuel', \App\Http\Controllers\Setting\FuelController::class);
         Route::resource('waste-management', \App\Http\Controllers\Setting\WasteManagementController::class);
         Route::resource('animal', \App\Http\Controllers\Setting\AnimalController::class);
+        Route::resource('material', \App\Http\Controllers\Setting\MaterialController::class);
     });
 });
