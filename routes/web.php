@@ -19,5 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('drinking-water-source', \App\Http\Controllers\Setting\DrinkingwaterSourceController::class);
         Route::resource('water-purify', \App\Http\Controllers\Setting\WaterPurifyController::class);
         Route::resource('toilet-type', \App\Http\Controllers\Setting\ToiletTypeController::class);
+        Route::resource('gender', \App\Http\Controllers\Setting\GenderController::class);
     });
 });

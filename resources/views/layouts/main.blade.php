@@ -191,6 +191,12 @@
                                         <p class="px-1">{{ __('चर्पी (शौचालय)') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('gender.index')}}" class="nav-link @yield('setting_gender')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('लिङ्ग') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
