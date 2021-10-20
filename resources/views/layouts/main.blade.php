@@ -221,6 +221,18 @@
                                         <p class="px-1">{{ __('सामानहरु') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('floor.index')}}" class="nav-link @yield('setting_floor')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('भुइ') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('roof.index')}}" class="nav-link @yield('setting_roof')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('छानो ') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

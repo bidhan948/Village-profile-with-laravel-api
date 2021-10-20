@@ -24,5 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('waste-management', \App\Http\Controllers\Setting\WasteManagementController::class);
         Route::resource('animal', \App\Http\Controllers\Setting\AnimalController::class);
         Route::resource('material', \App\Http\Controllers\Setting\MaterialController::class);
+        Route::resource('floor', \App\Http\Controllers\Setting\FloorController::class);
+        Route::resource('roof', \App\Http\Controllers\Setting\RoofController::class);
     });
 });
