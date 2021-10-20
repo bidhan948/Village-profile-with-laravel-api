@@ -209,6 +209,12 @@
                                         <p class="px-1">{{ __('फोहोर व्यवस्थापन') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('animal.index')}}" class="nav-link @yield('setting_animal')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('जन्तु/जनावर वा पशुपंक्षि') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
