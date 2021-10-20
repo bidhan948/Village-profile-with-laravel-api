@@ -16,6 +16,7 @@ use App\Models\Setting\foreign_country;
 use App\Models\Setting\foreign_country_settlement_reason;
 use App\Models\Setting\fuel;
 use App\Models\Setting\gender;
+use App\Models\Setting\health_service;
 use App\Models\Setting\material;
 use App\Models\Setting\remitance;
 use App\Models\Setting\roof;
@@ -53,6 +54,7 @@ class ShowDataController extends Controller
         $data['trainings'] = training::select('id','name')->get();
         $data['walls'] = wall::select('id','name')->get();
         $data['services'] = service::select('id','name')->get();
+        $data['health_services'] = health_service::select('id','name')->get();
 
         return response()->json($data, 200);
     }

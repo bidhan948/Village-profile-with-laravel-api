@@ -245,6 +245,12 @@
                                         <p class="px-1">{{ __('सेवाहरु') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('health-service.index')}}" class="nav-link @yield('setting_health_service')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('स्वास्थ्य सेवा') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
