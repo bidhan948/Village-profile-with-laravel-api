@@ -19,6 +19,7 @@ use App\Models\Setting\gender;
 use App\Models\Setting\material;
 use App\Models\Setting\remitance;
 use App\Models\Setting\roof;
+use App\Models\Setting\service;
 use App\Models\Setting\toilet_type;
 use App\Models\Setting\training;
 use App\Models\Setting\wall;
@@ -30,27 +31,28 @@ class ShowDataController extends Controller
 {
     public function index()
     {
-        $data['marriages'] = marriage::all();
-        $data['occupations'] = occupation::all();
-        $data['educations'] = education::all();
-        $data['disability_types'] = disability_type::all();
-        $data['disability_tools'] = disability_tool::all();
-        $data['disability_cards'] = disability_card::all();
-        $data['foreign_countries'] = foreign_country::all();
-        $data['foreign_country_settlement_reasons'] = foreign_country_settlement_reason::all();
-        $data['remitances'] = remitance::all();
-        $data['drinkingwater_sources'] = drinkingwater_source::all();
-        $data['water_purifies'] = water_purify::all();
-        $data['toilet_types'] = toilet_type::all();
-        $data['genders'] = gender::all();
-        $data['fuels'] = fuel::all();
-        $data['waste_managements'] = waste_management::all();
-        $data['animals'] = animal::all();
-        $data['materials'] = material::all();
-        $data['floors'] = floor::all();
-        $data['roofs'] = roof::all();
-        $data['trainings'] = training::all();
-        $data['walls'] = wall::all();
+        $data['marriages'] = marriage::select('id','name')->get();
+        $data['occupations'] = occupation::select('id','name')->get();
+        $data['educations'] = education::select('id','name')->get();
+        $data['disability_types'] = disability_type::select('id','name')->get();
+        $data['disability_tools'] = disability_tool::select('id','name')->get();
+        $data['disability_cards'] = disability_card::select('id','name')->get();
+        $data['foreign_countries'] = foreign_country::select('id','name')->get();
+        $data['foreign_country_settlement_reasons'] = foreign_country_settlement_reason::select('id','name')->get();
+        $data['remitances'] = remitance::select('id','name')->get();
+        $data['drinkingwater_sources'] = drinkingwater_source::select('id','name')->get();
+        $data['water_purifies'] = water_purify::select('id','name')->get();
+        $data['toilet_types'] = toilet_type::select('id','name')->get();
+        $data['genders'] = gender::select('id','name')->get();
+        $data['fuels'] = fuel::select('id','name')->get();
+        $data['waste_managements'] = waste_management::select('id','name')->get();
+        $data['animals'] = animal::select('id','name')->get();
+        $data['materials'] = material::select('id','name')->get();
+        $data['floors'] = floor::select('id','name')->get();
+        $data['roofs'] = roof::select('id','name')->get();
+        $data['trainings'] = training::select('id','name')->get();
+        $data['walls'] = wall::select('id','name')->get();
+        $data['services'] = service::select('id','name')->get();
 
         return response()->json($data, 200);
     }
