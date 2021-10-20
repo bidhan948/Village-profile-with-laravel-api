@@ -26,5 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('material', \App\Http\Controllers\Setting\MaterialController::class);
         Route::resource('floor', \App\Http\Controllers\Setting\FloorController::class);
         Route::resource('roof', \App\Http\Controllers\Setting\RoofController::class);
+        Route::resource('training', \App\Http\Controllers\Setting\TrainingController::class);
     });
 });

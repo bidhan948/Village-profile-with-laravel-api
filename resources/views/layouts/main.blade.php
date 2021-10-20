@@ -233,6 +233,12 @@
                                         <p class="px-1">{{ __('छानो ') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('training.index')}}" class="nav-link @yield('setting_training')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('तालिम') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
