@@ -234,6 +234,18 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{route('training.index')}}" class="nav-link @yield('setting_training')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('तालिम') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('social-training.index')}}" class="nav-link @yield('setting_social_training')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('सामाजिक तालिम') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('wall.index')}}" class="nav-link @yield('setting_wall')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('भित्ता ') }}</p>

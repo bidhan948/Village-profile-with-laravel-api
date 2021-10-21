@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('floor', \App\Http\Controllers\Setting\FloorController::class);
         Route::resource('roof', \App\Http\Controllers\Setting\RoofController::class);
         Route::resource('training', \App\Http\Controllers\Setting\TrainingController::class);
+        Route::resource('social-training', \App\Http\Controllers\Setting\SocialTrainingController::class);
         Route::resource('wall', \App\Http\Controllers\Setting\WallController::class);
         Route::resource('service', \App\Http\Controllers\Setting\ServiceController::class);
         Route::resource('health-service', \App\Http\Controllers\Setting\HealthServiceController::class);
