@@ -31,5 +31,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('service', \App\Http\Controllers\Setting\ServiceController::class);
         Route::resource('health-service', \App\Http\Controllers\Setting\HealthServiceController::class);
         Route::resource('disease', \App\Http\Controllers\Setting\DiseaseController::class);
+        Route::resource('disaster', \App\Http\Controllers\Setting\DisasterController::class);
     });
 });

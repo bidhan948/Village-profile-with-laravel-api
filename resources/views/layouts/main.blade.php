@@ -257,6 +257,12 @@
                                         <p class="px-1">{{ __('दीर्घ रोग') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('disaster.index')}}" class="nav-link @yield('setting_disaster')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('प्रकोप') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
