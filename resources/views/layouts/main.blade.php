@@ -299,6 +299,12 @@
                                         <p class="px-1">{{ __('बार्षिक आम्दानी') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('yearly-expenditure.index')}}" class="nav-link @yield('setting_yearly_expenditure')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('बार्षिक खर्च') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
