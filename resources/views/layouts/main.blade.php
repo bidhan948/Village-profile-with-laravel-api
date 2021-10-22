@@ -311,6 +311,12 @@
                                         <p class="px-1">{{ __('सिंचाईको किसिम') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('ownership.index')}}" class="nav-link @yield('setting_ownership')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('स्वामित्व') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

@@ -39,5 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('yearly-income', \App\Http\Controllers\Setting\YearlyIncomeController::class);
         Route::resource('yearly-expenditure', \App\Http\Controllers\Setting\YearlyExpenditureController::class);
         Route::resource('irrigation-type', \App\Http\Controllers\Setting\IrrigationTypeController::class);
+        Route::resource('ownership', \App\Http\Controllers\Setting\OwnershipController::class);
     });
 });
