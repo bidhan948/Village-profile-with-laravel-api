@@ -305,6 +305,12 @@
                                         <p class="px-1">{{ __('बार्षिक खर्च') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('irrigation-type.index')}}" class="nav-link @yield('setting_irrigation_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('सिंचाईको किसिम') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

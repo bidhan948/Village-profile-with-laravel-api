@@ -38,5 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('union-body', \App\Http\Controllers\Setting\UnionBodyController::class);
         Route::resource('yearly-income', \App\Http\Controllers\Setting\YearlyIncomeController::class);
         Route::resource('yearly-expenditure', \App\Http\Controllers\Setting\YearlyExpenditureController::class);
+        Route::resource('irrigation-type', \App\Http\Controllers\Setting\IrrigationTypeController::class);
     });
 });

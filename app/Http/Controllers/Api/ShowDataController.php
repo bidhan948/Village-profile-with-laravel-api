@@ -20,6 +20,7 @@ use App\Models\Setting\foreign_country_settlement_reason;
 use App\Models\Setting\fuel;
 use App\Models\Setting\gender;
 use App\Models\Setting\health_service;
+use App\Models\Setting\irrigation_type;
 use App\Models\Setting\material;
 use App\Models\Setting\relation;
 use App\Models\Setting\remitance;
@@ -71,6 +72,7 @@ class ShowDataController extends Controller
         $data['union_bodies'] = union_body::select('id', 'name')->get();
         $data['yearly_incomes'] = yearly_income::select('id', 'name')->get();
         $data['yearly_expenditures'] = yearly_expenditure::select('id', 'name')->get();
+        $data['irrigation_types'] = irrigation_type::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }
