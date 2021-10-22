@@ -287,6 +287,12 @@
                                         <p class="px-1">{{ __('प्रकोप') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('union-body.index')}}" class="nav-link @yield('setting_union_body')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('संघ संस्था') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

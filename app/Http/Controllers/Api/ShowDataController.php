@@ -28,6 +28,7 @@ use App\Models\Setting\service;
 use App\Models\Setting\social_training;
 use App\Models\Setting\toilet_type;
 use App\Models\Setting\training;
+use App\Models\Setting\union_body;
 use App\Models\Setting\wall;
 use App\Models\Setting\waste_management;
 use App\Models\Setting\water_purify;
@@ -65,6 +66,7 @@ class ShowDataController extends Controller
         $data['social_trainings'] = social_training::select('id','name')->get();
         $data['realtions'] = relation::select('id','name')->get();
         $data['allowance_types'] = allowance_type::select('id','name')->get();
+        $data['union_bodies'] = union_body::select('id','name')->get();
 
         return response()->json($data, 200);
     }

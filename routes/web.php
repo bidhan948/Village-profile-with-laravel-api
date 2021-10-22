@@ -35,5 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('disease', \App\Http\Controllers\Setting\DiseaseController::class);
         Route::resource('disaster', \App\Http\Controllers\Setting\DisasterController::class);
         Route::resource('allowance-type', \App\Http\Controllers\Setting\AllowanceTypeController::class);
+        Route::resource('union-body', \App\Http\Controllers\Setting\UnionBodyController::class);
     });
 });
