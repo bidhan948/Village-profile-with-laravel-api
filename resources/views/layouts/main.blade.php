@@ -132,6 +132,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{route('allowance-type.index')}}" class="nav-link @yield('setting_allowance_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('भत्ताको प्रकार') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('occupation.index')}}" class="nav-link @yield('setting_occupation')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('पेशा') }}</p>

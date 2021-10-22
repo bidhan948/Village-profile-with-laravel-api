@@ -9,6 +9,7 @@ use App\Models\disability_type;
 use App\Models\education;
 use App\Models\marriage;
 use App\Models\occupation;
+use App\Models\Setting\allowance_type;
 use App\Models\Setting\animal;
 use App\Models\Setting\disaster;
 use App\Models\Setting\disease;
@@ -63,6 +64,7 @@ class ShowDataController extends Controller
         $data['disasters'] = disaster::select('id','name')->get();
         $data['social_trainings'] = social_training::select('id','name')->get();
         $data['realtions'] = relation::select('id','name')->get();
+        $data['allowance_types'] = allowance_type::select('id','name')->get();
 
         return response()->json($data, 200);
     }
