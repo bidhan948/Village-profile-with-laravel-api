@@ -293,6 +293,12 @@
                                         <p class="px-1">{{ __('संघ संस्था') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('yearly-income.index')}}" class="nav-link @yield('setting_yearly_income')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('बार्षिक आम्दानी') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

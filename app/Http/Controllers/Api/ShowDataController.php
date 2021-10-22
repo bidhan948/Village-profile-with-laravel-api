@@ -32,6 +32,7 @@ use App\Models\Setting\union_body;
 use App\Models\Setting\wall;
 use App\Models\Setting\waste_management;
 use App\Models\Setting\water_purify;
+use App\Models\Setting\yearly_income;
 use Illuminate\Http\Request;
 
 class ShowDataController extends Controller
@@ -67,6 +68,7 @@ class ShowDataController extends Controller
         $data['realtions'] = relation::select('id','name')->get();
         $data['allowance_types'] = allowance_type::select('id','name')->get();
         $data['union_bodies'] = union_body::select('id','name')->get();
+        $data['yearly_incomes'] = yearly_income::select('id','name')->get();
 
         return response()->json($data, 200);
     }
