@@ -20,6 +20,7 @@ use App\Models\Setting\fuel;
 use App\Models\Setting\gender;
 use App\Models\Setting\health_service;
 use App\Models\Setting\material;
+use App\Models\Setting\relation;
 use App\Models\Setting\remitance;
 use App\Models\Setting\roof;
 use App\Models\Setting\service;
@@ -61,6 +62,7 @@ class ShowDataController extends Controller
         $data['diseases'] = disease::select('id','name')->get();
         $data['disasters'] = disaster::select('id','name')->get();
         $data['social_trainings'] = social_training::select('id','name')->get();
+        $data['realtions'] = relation::select('id','name')->get();
 
         return response()->json($data, 200);
     }

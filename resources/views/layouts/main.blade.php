@@ -120,6 +120,12 @@
                             </a>
                             <ul class="nav nav-treeview" style="display: @yield('s_child')">
                                 <li class="nav-item">
+                                    <a href="{{route('relation.index')}}" class="nav-link @yield('setting_relation')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('नाता') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{route('marriage.index')}}" class="nav-link @yield('setting_marriage')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('वैवाहिक स्थिती') }}</p>

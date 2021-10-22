@@ -8,6 +8,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('settings')->group(function () {
         Route::resource('marriage', \App\Http\Controllers\MarriageController::class);
+        Route::resource('relation', \App\Http\Controllers\Setting\RelationController::class);
         Route::resource('occupation', \App\Http\Controllers\OccupationController::class);
         Route::resource('education', \App\Http\Controllers\EducationController::class);
         Route::resource('disability_type', \App\Http\Controllers\DisabilityTypeController::class);
