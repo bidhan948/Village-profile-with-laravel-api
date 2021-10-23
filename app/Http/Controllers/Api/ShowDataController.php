@@ -32,6 +32,7 @@ use App\Models\Setting\social_training;
 use App\Models\Setting\toilet_type;
 use App\Models\Setting\training;
 use App\Models\Setting\union_body;
+use App\Models\Setting\unit;
 use App\Models\Setting\wall;
 use App\Models\Setting\waste_management;
 use App\Models\Setting\water_purify;
@@ -77,6 +78,7 @@ class ShowDataController extends Controller
         $data['irrigation_types'] = irrigation_type::select('id', 'name')->get();
         $data['ownership'] = ownership::select('id', 'name')->get();
         $data['industry_types'] = industry_type::select('id', 'name')->get();
+        $data['units'] = unit::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }

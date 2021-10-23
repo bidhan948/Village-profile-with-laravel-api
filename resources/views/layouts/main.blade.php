@@ -347,6 +347,13 @@
                                         <p class="px-1">{{ __('उधोगको प्रकार') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('unit.index') }}"
+                                        class="nav-link @yield('setting_unit')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('एकाइ') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
