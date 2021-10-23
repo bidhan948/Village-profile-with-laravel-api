@@ -18,6 +18,7 @@ use App\Models\Setting\entertainment;
 use App\Models\Setting\floor;
 use App\Models\Setting\foreign_country;
 use App\Models\Setting\foreign_country_settlement_reason;
+use App\Models\Setting\forest_type;
 use App\Models\Setting\fuel;
 use App\Models\Setting\gender;
 use App\Models\Setting\health_service;
@@ -81,6 +82,7 @@ class ShowDataController extends Controller
         $data['industry_types'] = industry_type::select('id', 'name')->get();
         $data['units'] = unit::select('id', 'name')->get();
         $data['entertainments'] = entertainment::select('id', 'name')->get();
+        $data['forest_types'] = forest_type::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }

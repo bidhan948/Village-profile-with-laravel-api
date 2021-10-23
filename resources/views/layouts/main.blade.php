@@ -361,6 +361,13 @@
                                         <p class="px-1">{{ __('मनोरन्जन') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('forest-type.index') }}"
+                                        class="nav-link @yield('setting_forest_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('बनको किसिम') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

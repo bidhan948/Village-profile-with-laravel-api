@@ -43,5 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('industry-type', \App\Http\Controllers\Setting\IndustryTypeController::class);
         Route::resource('unit', \App\Http\Controllers\Setting\UnitController::class);
         Route::resource('entertainment', \App\Http\Controllers\Setting\EntertainmentController::class);
+        Route::resource('forest-type', \App\Http\Controllers\Setting\ForestTypeController::class);
     });
 });
