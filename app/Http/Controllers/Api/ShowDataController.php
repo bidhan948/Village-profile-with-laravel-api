@@ -14,6 +14,7 @@ use App\Models\Setting\animal;
 use App\Models\Setting\disaster;
 use App\Models\Setting\disease;
 use App\Models\Setting\drinkingwater_source;
+use App\Models\Setting\entertainment;
 use App\Models\Setting\floor;
 use App\Models\Setting\foreign_country;
 use App\Models\Setting\foreign_country_settlement_reason;
@@ -79,6 +80,7 @@ class ShowDataController extends Controller
         $data['ownership'] = ownership::select('id', 'name')->get();
         $data['industry_types'] = industry_type::select('id', 'name')->get();
         $data['units'] = unit::select('id', 'name')->get();
+        $data['entertainments'] = entertainment::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }

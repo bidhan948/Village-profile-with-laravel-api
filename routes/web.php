@@ -42,5 +42,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('ownership', \App\Http\Controllers\Setting\OwnershipController::class);
         Route::resource('industry-type', \App\Http\Controllers\Setting\IndustryTypeController::class);
         Route::resource('unit', \App\Http\Controllers\Setting\UnitController::class);
+        Route::resource('entertainment', \App\Http\Controllers\Setting\EntertainmentController::class);
     });
 });

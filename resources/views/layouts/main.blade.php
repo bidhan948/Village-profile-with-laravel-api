@@ -354,6 +354,13 @@
                                         <p class="px-1">{{ __('एकाइ') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('entertainment.index') }}"
+                                        class="nav-link @yield('setting_entertainment')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('मनोरन्जन') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
