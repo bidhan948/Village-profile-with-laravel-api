@@ -27,6 +27,7 @@ use App\Models\Setting\irrigation_type;
 use App\Models\Setting\material;
 use App\Models\Setting\ownership;
 use App\Models\Setting\relation;
+use App\Models\Setting\religion;
 use App\Models\Setting\remitance;
 use App\Models\Setting\road_type;
 use App\Models\Setting\roof;
@@ -85,6 +86,7 @@ class ShowDataController extends Controller
         $data['entertainments'] = entertainment::select('id', 'name')->get();
         $data['forest_types'] = forest_type::select('id', 'name')->get();
         $data['road_types'] = road_type::select('id', 'name')->get();
+        $data['religions'] = religion::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }

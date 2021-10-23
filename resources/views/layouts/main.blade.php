@@ -375,6 +375,13 @@
                                         <p class="px-1">{{ __('सडकको प्रकार') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('religion.index') }}"
+                                        class="nav-link @yield('setting_religion')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('धर्म') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

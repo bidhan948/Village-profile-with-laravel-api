@@ -45,5 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('entertainment', \App\Http\Controllers\Setting\EntertainmentController::class);
         Route::resource('forest-type', \App\Http\Controllers\Setting\ForestTypeController::class);
         Route::resource('road-type', \App\Http\Controllers\Setting\RoadTypeController::class);
+        Route::resource('religion', \App\Http\Controllers\Setting\ReligionController::class);
     });
 });
