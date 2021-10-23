@@ -368,6 +368,13 @@
                                         <p class="px-1">{{ __('बनको किसिम') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('road-type.index') }}"
+                                        class="nav-link @yield('setting_road_type')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('सडकको प्रकार') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

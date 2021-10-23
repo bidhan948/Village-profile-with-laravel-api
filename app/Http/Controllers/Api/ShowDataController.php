@@ -28,6 +28,7 @@ use App\Models\Setting\material;
 use App\Models\Setting\ownership;
 use App\Models\Setting\relation;
 use App\Models\Setting\remitance;
+use App\Models\Setting\road_type;
 use App\Models\Setting\roof;
 use App\Models\Setting\service;
 use App\Models\Setting\social_training;
@@ -83,6 +84,7 @@ class ShowDataController extends Controller
         $data['units'] = unit::select('id', 'name')->get();
         $data['entertainments'] = entertainment::select('id', 'name')->get();
         $data['forest_types'] = forest_type::select('id', 'name')->get();
+        $data['road_types'] = road_type::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }
