@@ -382,6 +382,13 @@
                                         <p class="px-1">{{ __('धर्म') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('crop.index') }}"
+                                        class="nav-link @yield('setting_crop')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-1">{{ __('बाली') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MarriageController;
+use App\Http\Controllers\Setting\ForeignCountrySettlementReasonController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -7,7 +9,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('settings')->group(function () {
-        Route::resource('marriage', \App\Http\Controllers\MarriageController::class);
+        Route::resource('marriage', MarriageController::class);
         Route::resource('relation', \App\Http\Controllers\Setting\RelationController::class);
         Route::resource('occupation', \App\Http\Controllers\OccupationController::class);
         Route::resource('education', \App\Http\Controllers\EducationController::class);
@@ -15,7 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('disability_card', \App\Http\Controllers\DisabilityCardController::class);
         Route::resource('disability_tool', \App\Http\Controllers\DisabilityToolController::class);
         Route::resource('foreign_country', \App\Http\Controllers\Setting\ForeignCountryController::class);
-        Route::resource('foreign-settlement-reason', \App\Http\Controllers\Setting\ForeignCountrySettlementReasonController::class);
+        Route::resource('foreign-settlement-reason', ForeignCountrySettlementReasonController::class);
         Route::resource('remitance', \App\Http\Controllers\Setting\RemitanceController::class);
         Route::resource('drinking-water-source', \App\Http\Controllers\Setting\DrinkingwaterSourceController::class);
         Route::resource('water-purify', \App\Http\Controllers\Setting\WaterPurifyController::class);
@@ -46,5 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('forest-type', \App\Http\Controllers\Setting\ForestTypeController::class);
         Route::resource('road-type', \App\Http\Controllers\Setting\RoadTypeController::class);
         Route::resource('religion', \App\Http\Controllers\Setting\ReligionController::class);
+        Route::resource('crop', \App\Http\Controllers\Setting\CropController::class);
+        Route::resource('crop-child', \App\Http\Controllers\Setting\CropChildController::class);
     });
 });

@@ -11,6 +11,7 @@ use App\Models\marriage;
 use App\Models\occupation;
 use App\Models\Setting\allowance_type;
 use App\Models\Setting\animal;
+use App\Models\Setting\crop;
 use App\Models\Setting\disaster;
 use App\Models\Setting\disease;
 use App\Models\Setting\drinkingwater_source;
@@ -49,6 +50,7 @@ class ShowDataController extends Controller
     public function index()
     {
         $data['marriages'] = marriage::select('id', 'name')->get();
+        $data['realations'] = relation::select('id', 'name')->get();
         $data['occupations'] = occupation::select('id', 'name')->get();
         $data['educations'] = education::select('id', 'name')->get();
         $data['disability_types'] = disability_type::select('id', 'name')->get();
@@ -87,6 +89,7 @@ class ShowDataController extends Controller
         $data['forest_types'] = forest_type::select('id', 'name')->get();
         $data['road_types'] = road_type::select('id', 'name')->get();
         $data['religions'] = religion::select('id', 'name')->get();
+        $data['crops'] = crop::select('id', 'name')->get();
 
         return response()->json($data, 200);
     }
