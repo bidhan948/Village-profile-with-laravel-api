@@ -8,8 +8,7 @@ use App\Http\Requests\Settings\submitCrop;
 use App\Models\Setting\crop;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+
 
 class CropController extends Controller
 {
@@ -27,7 +26,7 @@ class CropController extends Controller
     }
     public function edit(crop $crop): View
     {
-        $crops = crop::all();
+        $crops = crop::whereNull('crop_id')->get();
         return view('settings.crop.crop', compact('crop','crops'));
     }
     

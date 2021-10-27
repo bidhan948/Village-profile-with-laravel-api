@@ -12,8 +12,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -47,8 +46,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
             <!-- Right navbar links -->
@@ -62,8 +60,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i> <span
-                                class="px-3">{{ __('Logout') }}</span>
+                            <i class="fas fa-sign-out-alt"></i> <span class="px-3">{{ __('Logout') }}</span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -78,8 +75,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">{{ auth()->user()->name }}</span>
             </a>
 
@@ -88,8 +84,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
+                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -98,8 +93,7 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-tractor"></i>
@@ -118,99 +112,85 @@
                             </a>
                             <ul class="nav nav-treeview" style="display: @yield('s_child')">
                                 <li class="nav-item">
-                                    <a href="{{ route('relation.index') }}"
-                                        class="nav-link @yield('setting_relation')">
+                                    <a href="{{ route('relation.index') }}" class="nav-link @yield('setting_relation')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('नाता') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('marriage.index') }}"
-                                        class="nav-link @yield('setting_marriage')">
+                                    <a href="{{ route('marriage.index') }}" class="nav-link @yield('setting_marriage')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('वैवाहिक स्थिती') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('allowance-type.index') }}"
-                                        class="nav-link @yield('setting_allowance_type')">
+                                    <a href="{{ route('allowance-type.index') }}" class="nav-link @yield('setting_allowance_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('भत्ताको प्रकार') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('occupation.index') }}"
-                                        class="nav-link @yield('setting_occupation')">
+                                    <a href="{{ route('occupation.index') }}" class="nav-link @yield('setting_occupation')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('पेशा') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('education.index') }}"
-                                        class="nav-link @yield('setting_education')">
+                                    <a href="{{ route('education.index') }}" class="nav-link @yield('setting_education')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('शैक्षिकस्तर') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('disability_type.index') }}"
-                                        class="nav-link @yield('setting_disability')">
+                                    <a href="{{ route('disability_type.index') }}" class="nav-link @yield('setting_disability')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('अपाङ्गताको किसिम') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('disability_card.index') }}"
-                                        class="nav-link @yield('setting_disability_card')">
+                                    <a href="{{ route('disability_card.index') }}" class="nav-link @yield('setting_disability_card')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('अपाङ्गताको कार्ड किसिम') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('disability_tool.index') }}"
-                                        class="nav-link @yield('setting_disability_tool')">
+                                    <a href="{{ route('disability_tool.index') }}" class="nav-link @yield('setting_disability_tool')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('अपाङ्गताको साहायक सामग्री') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('foreign_country.index') }}"
-                                        class="nav-link @yield('setting_foreign_country')">
+                                    <a href="{{ route('foreign_country.index') }}" class="nav-link @yield('setting_foreign_country')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('बाहिर गएको/बसेको ठाउँहरु ') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('foreign-settlement-reason.index') }}"
-                                        class="nav-link @yield('setting_foreign_country_reason')">
+                                    <a href="{{ route('foreign-settlement-reason.index') }}" class="nav-link @yield('setting_foreign_country_reason')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('बाहिर बसोवास गर्नुको कारण') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('remitance.index') }}"
-                                        class="nav-link @yield('setting_remitance')">
+                                    <a href="{{ route('remitance.index') }}" class="nav-link @yield('setting_remitance')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('रेमिटेन्स') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('drinking-water-source.index') }}"
-                                        class="nav-link @yield('setting_drinking_water_source')">
+                                    <a href="{{ route('drinking-water-source.index') }}" class="nav-link @yield('setting_drinking_water_source')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('खानेपानीको स्रोत') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('water-purify.index') }}"
-                                        class="nav-link @yield('setting_water_purify')">
+                                    <a href="{{ route('water-purify.index') }}" class="nav-link @yield('setting_water_purify')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('पानी पिउन योग्य बनाउन') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('toilet-type.index') }}"
-                                        class="nav-link @yield('setting_toilet_type')">
+                                    <a href="{{ route('toilet-type.index') }}" class="nav-link @yield('setting_toilet_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('चर्पी (शौचालय)') }}</p>
                                     </a>
@@ -228,8 +208,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('waste-management.index') }}"
-                                        class="nav-link @yield('setting_waste_management')">
+                                    <a href="{{ route('waste-management.index') }}" class="nav-link @yield('setting_waste_management')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('फोहोर व्यवस्थापन') }}</p>
                                     </a>
@@ -241,8 +220,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('material.index') }}"
-                                        class="nav-link @yield('setting_material')">
+                                    <a href="{{ route('material.index') }}" class="nav-link @yield('setting_material')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('सामानहरु') }}</p>
                                     </a>
@@ -260,15 +238,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('training.index') }}"
-                                        class="nav-link @yield('setting_training')">
+                                    <a href="{{ route('training.index') }}" class="nav-link @yield('setting_training')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('तालिम') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('social-training.index') }}"
-                                        class="nav-link @yield('setting_social_training')">
+                                    <a href="{{ route('social-training.index') }}" class="nav-link @yield('setting_social_training')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('सामाजिक तालिम') }}</p>
                                     </a>
@@ -286,8 +262,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('health-service.index') }}"
-                                        class="nav-link @yield('setting_health_service')">
+                                    <a href="{{ route('health-service.index') }}" class="nav-link @yield('setting_health_service')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('स्वास्थ्य सेवा') }}</p>
                                     </a>
@@ -299,94 +274,99 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('disaster.index') }}"
-                                        class="nav-link @yield('setting_disaster')">
+                                    <a href="{{ route('disaster.index') }}" class="nav-link @yield('setting_disaster')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('प्रकोप') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('union-body.index') }}"
-                                        class="nav-link @yield('setting_union_body')">
+                                    <a href="{{ route('union-body.index') }}" class="nav-link @yield('setting_union_body')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('संघ संस्था') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('yearly-income.index') }}"
-                                        class="nav-link @yield('setting_yearly_income')">
+                                    <a href="{{ route('yearly-income.index') }}" class="nav-link @yield('setting_yearly_income')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('बार्षिक आम्दानी') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('yearly-expenditure.index') }}"
-                                        class="nav-link @yield('setting_yearly_expenditure')">
+                                    <a href="{{ route('yearly-expenditure.index') }}" class="nav-link @yield('setting_yearly_expenditure')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('बार्षिक खर्च') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('irrigation-type.index') }}"
-                                        class="nav-link @yield('setting_irrigation_type')">
+                                    <a href="{{ route('irrigation-type.index') }}" class="nav-link @yield('setting_irrigation_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('सिंचाईको किसिम') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('ownership.index') }}"
-                                        class="nav-link @yield('setting_ownership')">
+                                    <a href="{{ route('ownership.index') }}" class="nav-link @yield('setting_ownership')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('स्वामित्व') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('industry-type.index') }}"
-                                        class="nav-link @yield('setting_industry_type')">
+                                    <a href="{{ route('industry-type.index') }}" class="nav-link @yield('setting_industry_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('उधोगको प्रकार') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('unit.index') }}"
-                                        class="nav-link @yield('setting_unit')">
+                                    <a href="{{ route('unit.index') }}" class="nav-link @yield('setting_unit')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('एकाइ') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('entertainment.index') }}"
-                                        class="nav-link @yield('setting_entertainment')">
+                                    <a href="{{ route('entertainment.index') }}" class="nav-link @yield('setting_entertainment')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('मनोरन्जन') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('forest-type.index') }}"
-                                        class="nav-link @yield('setting_forest_type')">
+                                    <a href="{{ route('forest-type.index') }}" class="nav-link @yield('setting_forest_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('बनको किसिम') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('road-type.index') }}"
-                                        class="nav-link @yield('setting_road_type')">
+                                    <a href="{{ route('road-type.index') }}" class="nav-link @yield('setting_road_type')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('सडकको प्रकार') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('religion.index') }}"
-                                        class="nav-link @yield('setting_religion')">
+                                    <a href="{{ route('religion.index') }}" class="nav-link @yield('setting_religion')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('धर्म') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('crop.index') }}"
-                                        class="nav-link @yield('setting_crop')">
+                                    <a href="{{ route('crop.index') }}" class="nav-link @yield('setting_crop')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-1">{{ __('बाली') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('province.index') }}" class="nav-link @yield('setting_province')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('प्रदेश') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('municipal.index') }}" class="nav-link @yield('setting_municipal')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('नगरपालिका') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('ward.index') }}" class="nav-link @yield('setting_ward')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('वार्ड') }}</p>
                                     </a>
                                 </li>
                             </ul>
