@@ -1,22 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\ShowDataController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\api\authController;
+use App\Http\Controllers\api\SurveyController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', [authController::class, 'login']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('survey/get-data', [SurveyController::class, 'index'])->name('survey.index');
+    Route::post('logout', [authController::class, 'logout']);
+    Route::post('survey/store', [SurveyController::class, 'store'])->name('survey.store');
 });
-
-Route::get('getData',[ShowDataController::class,'index']);

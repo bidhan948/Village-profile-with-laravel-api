@@ -351,7 +351,7 @@
                                         <p class="px-1">{{ __('बाली') }}</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('province.index') }}" class="nav-link @yield('setting_province')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('प्रदेश') }}</p>
@@ -368,7 +368,7 @@
                                         <i class="far fa-circle nav-icon"></i>
                                         <p class="px-2">{{ __('वार्ड') }}</p>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                     </ul>

@@ -53,8 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('religion', \App\Http\Controllers\Setting\ReligionController::class);
         Route::resource('crop', \App\Http\Controllers\Setting\CropController::class);
         Route::resource('crop-child', \App\Http\Controllers\Setting\CropChildController::class);
-        Route::resource('province', ProvinceController::class);
-        Route::resource('municipal',MunicipalController::class);
-        Route::resource('ward',wardController::class);
+        // Route::resource('province', ProvinceController::class);
+        // Route::resource('municipal',MunicipalController::class);
+        // Route::resource('ward',wardController::class);
     });
 });

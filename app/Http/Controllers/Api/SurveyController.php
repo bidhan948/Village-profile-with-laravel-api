@@ -5,7 +5,10 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\api\surveyData;
 use App\Models\Setting\address;
+use App\Models\Setting\district;
 use App\Models\Setting\gender;
+use App\Models\Setting\municipality;
+use App\Models\Setting\province;
 use App\Models\Setting\relation;
 use Illuminate\Http\Request;
 
@@ -15,14 +18,18 @@ class SurveyController extends Controller
     {
         $data['genders'] = gender::select('id', 'name')->get();
         $data['relations'] = relation::select('id', 'name')->get();
-        $data['addresses'] = address::select('id', 'name', 'address_id')->get();
+        $data['provinces'] = province::select('id','NepaliName','EnglishName')->get();
+        $data['districts'] = district::all();
+        $data['municipalities'] = municipality::all();
         return response()->json($data, 200);
     }
 
     public function store(Request $request)
     {
+        $content = $request->getContent();
+        return $content;
         // here I have assumed that data is validated already 
-        foreach ($request->data as $key => $data) {
+        foreach ($content as $key => $data) {
             $ward = address::where('id', $data->ward_id)->first();
             $count = 1;
             $i = 1;
@@ -46,7 +53,7 @@ class SurveyController extends Controller
             $survey_model->toll_name = $data->toll_name;
             $survey_model->gps_latitude = $data->gps_latitude;
             $survey_model->gps_longitude = $data->gps_longitude;
-            $survey_model->remark = $active_count < 7 ? $data->remark : 0;
+            $survey_model->remark = $active_count < 7 ? $data->remarks : 0;
             $survey_model->group_code = $group_code;
 
             $survey_model->save();
