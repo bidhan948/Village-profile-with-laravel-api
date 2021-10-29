@@ -10,3 +10,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [authController::class, 'logout']);
     Route::post('survey/store', [SurveyController::class, 'store'])->name('survey.store');
 });
+Route::get('get-data', [SurveyController::class, 'test']);
