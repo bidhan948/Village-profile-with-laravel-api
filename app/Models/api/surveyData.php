@@ -3,6 +3,10 @@
 namespace App\Models\api;
 
 use App\Models\group_code;
+use App\Models\Setting\district;
+use App\Models\Setting\gender;
+use App\Models\Setting\municipality;
+use App\Models\Setting\province;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,10 +39,24 @@ class surveyData extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public function groupCode()
     {
         return $this->hasMany(group_code::class);
     }
-    // protected $timestaps = false;
+    public function gender()
+    {
+        return $this->belongsTo(gender::class);
+    }
+    public function province()
+    {
+        return $this->belongsTo(province::class,'province_id');
+    }
+    public function municipality()
+    {
+        return $this->belongsTo(municipality::class);
+    }
+    public function district()
+    {
+        return $this->belongsTo(district::class);
+    }
 }
