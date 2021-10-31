@@ -11,7 +11,7 @@ class SurveyReportController extends Controller
 {
     public function index(): View
     {
-        $reports = surveyData::with('groupCode', 'gender', 'province', 'municipality', 'district')->get();
+        $reports = surveyData::with('groupCode', 'gender', 'province', 'municipality', 'district','user')->get();
         return view('report.survey', compact('reports'));
     }
 }

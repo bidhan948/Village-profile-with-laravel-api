@@ -102,6 +102,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('user.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    {{ __('प्रयोगकर्ता') }}
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview @yield('menu_open')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MarriageController;
 use App\Http\Controllers\Report\SurveyReportController;
 use App\Http\Controllers\Setting\ForeignCountrySettlementReasonController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -10,6 +12,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('survey-data',[SurveyReportController::class,'index'])->name('report.survey');
+    Route::get('user/status-switch/{user}',[UserController::class,'switchStatus'])->name('user.status');
+    Route::resource('user',UserController::class);
     /****************** below route is all for setting****************************/
     Route::prefix('settings')->group(function () {
         Route::resource('marriage', MarriageController::class);
