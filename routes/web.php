@@ -12,6 +12,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('survey-data',[SurveyReportController::class,'index'])->name('report.survey');
+    Route::post('survey-data',[SurveyReportController::class,'report'])->name('report.survey');
     Route::get('user/status-switch/{user}',[UserController::class,'switchStatus'])->name('user.status');
     Route::resource('user',UserController::class);
     /****************** below route is all for setting****************************/
