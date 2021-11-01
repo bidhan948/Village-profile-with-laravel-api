@@ -232,7 +232,7 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('प्रयोगकर्ता') }} <span
+                                            {{ __('पुन हाल्नहोस्') }} <span
                                                 class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>

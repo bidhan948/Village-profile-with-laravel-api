@@ -14,6 +14,7 @@ use App\Models\Setting\animal;
 use App\Models\Setting\crop;
 use App\Models\Setting\disaster;
 use App\Models\Setting\disease;
+use App\Models\Setting\district;
 use App\Models\Setting\drinkingwater_source;
 use App\Models\Setting\entertainment;
 use App\Models\Setting\floor;
@@ -26,7 +27,9 @@ use App\Models\Setting\health_service;
 use App\Models\Setting\industry_type;
 use App\Models\Setting\irrigation_type;
 use App\Models\Setting\material;
+use App\Models\Setting\municipality;
 use App\Models\Setting\ownership;
+use App\Models\Setting\province;
 use App\Models\Setting\relation;
 use App\Models\Setting\religion;
 use App\Models\Setting\remitance;
@@ -90,6 +93,9 @@ class ShowDataController extends Controller
         $data['road_types'] = road_type::select('id', 'name')->get();
         $data['religions'] = religion::select('id', 'name')->get();
         $data['crops'] = crop::select('id', 'name')->get();
+        $data['provinces'] = province::select('id')->get();
+        $data['districts'] = district::all();
+        $data['municipalities'] = municipality::all();
 
         return response()->json($data, 200);
     }
