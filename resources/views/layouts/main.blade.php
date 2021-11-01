@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -38,7 +40,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
     @include('sweetalert::alert')
-    {{-- @livewireStyles --}}
+    @livewireStyles
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -361,24 +363,24 @@
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('province.index') }}" class="nav-link @yield('setting_province')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('प्रदेश') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('municipal.index') }}" class="nav-link @yield('setting_municipal')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('नगरपालिका') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('ward.index') }}" class="nav-link @yield('setting_ward')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('वार्ड') }}</p>
-                                    </a>
-                                </li> --}}
-                            </ul>
+                                <i class="far fa-circle nav-icon"></i>
+                                <p class="px-2">{{ __('प्रदेश') }}</p>
+                                </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('municipal.index') }}" class="nav-link @yield('setting_municipal')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p class="px-2">{{ __('नगरपालिका') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('ward.index') }}" class="nav-link @yield('setting_ward')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p class="px-2">{{ __('वार्ड') }}</p>
+                            </a>
+                        </li> --}}
+                    </ul>
+                    </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -401,6 +403,7 @@
             <!-- /.content -->
         </div>
     </div>
+    @livewireScripts
     <!-- ./wrapper -->
     {{-- @livewireScripts --}}
     <!-- jQuery -->
@@ -431,6 +434,8 @@
     <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

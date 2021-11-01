@@ -3,16 +3,8 @@
 @section('main_content')
     <div class="card text-sm ">
         <div class="card-header my-2">
-            <div class="row my-1">
-                <div class="col-md-6" style="margin-bottom:-5px;">
-                    <p class="">{{ __('सर्वेक्षणको सुचिहरु') }}</p>
-                </div>
-                <div class="
-                        col-md-6 text-right">
-                    {{-- <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        {{ __('सर्वेक्षणको  थप्नुहोस') }}</a> --}}
-                </div>
-            </div>
+            <livewire:survey.report :users="$users" :reports="$reports" :provinces="$provinces" :districts="$districts"
+                :municipalities="$municipalities" :groupcodes="$groupcodes">
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -43,23 +35,20 @@
                             <td class="text-center">{{ $report->contact_no }}</td>
                             <td class="text-center">{{ $report->desired_person_name }}</td>
                             <td class="text-center">
-                                {{ "प्रदेश नं " . $report->province->NepaliName . ',' . $report->district->NepaliName . ',' . $report->municipality->NepaliName . '-' . "$report->ward_id" }}
+                                {{ 'प्रदेश नं ' . $report->province->NepaliName . ',' . $report->district->NepaliName . ',' . $report->municipality->NepaliName . '-' . "$report->ward_id" }}
                             </td>
                             <td class="text-center">{{ $report->groupCode[0]->code }}</td>
                             <td class="text-center">{{ $report->user->name }}</td>
                             {{-- <td class="text-center"><a href="{{ route('allowance-type.edit', $report) }}"
-                                    class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
-                                <a href="#" class="btn-sm btn-danger"
-                                    onclick="event.preventDefault();
+                    class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                    <a href="#" class="btn-sm btn-danger" onclick="event.preventDefault();
                                                                                                                         document.getElementById('delete_report{{ $i }}').submit();">
-                                    <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
-                            </td>
-                            <form id="delete_report{{ $i }}"
-                                action="{{ route('allowance-type.destroy', $report) }}" method="POST"
-                                class="d-none">
-                                @method('DELETE')
-                                @csrf
-                            </form> --}}
+                        <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
+                    </td>
+                    <form id="delete_report{{ $i }}" action="{{ route('allowance-type.destroy', $report) }}" method="POST" class="d-none">
+                        @method('DELETE')
+                        @csrf
+                    </form> --}}
                         </tr>
                     @endforeach
             </table>
@@ -75,13 +64,7 @@
                 "responsive": true,
                 "autoWidth": false,
             });
+            $('.select2').select2()
         });
-    </script>
-    <script>
-        window.onload = function() {
-            if ({{ $errors->any() }}) {
-                $('#modal-lg').modal('show');
-            }
-        }
     </script>
 @endsection
