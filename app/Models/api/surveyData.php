@@ -22,17 +22,19 @@ class surveyData extends Model
         'contact_no',
         'gender_id',
         'desired_person_name',
-        'realtion_id',
+        'relation_id',
         'municipality_id',
         'province_id',
         'district_id',
         'ward_id',
         'toll_name',
+        'user_id',
         'gps_latitude',
         'gps_longitude',
         'remark',
         'mobile_id',
-        'is_sync'
+        'is_sync',
+        'is_transfer'
     ];
 
     public function user()

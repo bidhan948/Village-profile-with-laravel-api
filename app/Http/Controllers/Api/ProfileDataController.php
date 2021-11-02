@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\disability_card;
@@ -46,9 +46,7 @@ use App\Models\Setting\waste_management;
 use App\Models\Setting\water_purify;
 use App\Models\Setting\yearly_expenditure;
 use App\Models\Setting\yearly_income;
-use Illuminate\Http\Request;
-
-class ShowDataController extends Controller
+class ProfileDataController extends Controller
 {
     public function index()
     {

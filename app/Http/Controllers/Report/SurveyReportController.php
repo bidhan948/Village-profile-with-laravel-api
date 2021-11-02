@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Report;
 
-use App\Http\Controllers\api\SurveyController;
 use App\Http\Controllers\Controller;
 use App\Models\api\surveyData;
 use App\Models\group_code;
@@ -12,7 +11,6 @@ use App\Models\Setting\province;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class SurveyReportController extends Controller
 {

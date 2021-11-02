@@ -60,7 +60,8 @@ class SurveyController extends Controller
                     'user_id' => auth()->user()->id,
                     'ward_id' => $survey->ward_id,
                     'municipality_id' => $survey->municipality_id,
-                    'is_sync' => 1
+                    'is_sync' => 1,
+                    'is_transfer' => 0
                 ]
             )->count();
             /**********************************/
