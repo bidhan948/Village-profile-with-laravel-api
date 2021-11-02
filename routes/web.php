@@ -11,10 +11,14 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    /****************** below route is all for survey report****************************/
     Route::get('survey-data',[SurveyReportController::class,'index'])->name('report.survey');
     Route::post('survey-data',[SurveyReportController::class,'report'])->name('report.survey');
+    /****************** below route is all for transfer****************************/
+    Route::get('survey/transfer-detail',[TransferController::class,'index'])->name('transfer.index');
     Route::get('survey/transfer/{surveyData}',[TransferController::class,'transfer'])->name('survey.transfer');
     Route::post('survey/transfer/{surveyData}',[TransferController::class,'store'])->name('survey.transfer');
+    /****************** below route is all for users****************************/
     Route::get('user/status-switch/{user}',[UserController::class,'switchStatus'])->name('user.status');
     Route::resource('user',UserController::class);
     /****************** below route is all for setting****************************/

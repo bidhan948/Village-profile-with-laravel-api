@@ -31,6 +31,11 @@ class TransferController extends Controller
         $this->municipalities = municipality::all();
     }
 
+    public function index(): ViewView
+    {
+        $transfers = survey_transfer_detail::with('surveyData','User')->get();
+        return view('survey.transfer', compact('transfers'));
+    }
     public function transfer(surveyData $surveyData): ViewView
     {
         $surveyData = surveyData::where('id', $surveyData->id)->with(
@@ -57,24 +62,24 @@ class TransferController extends Controller
     public function store(SurveyTransferRequest $request, surveyData $surveyData): RedirectResponse
     {
         $data = $surveyData->toArray();
-        unset($data['created_at'],$data['updated_at']);
+        unset($data['created_at'], $data['updated_at']);
         $data['is_transfer'] = 1;
-        
+
         $latestSurveyData = surveyData::create($data);
-        
+
         survey_transfer_detail::create(
             $request->validated() +
-            [
-                'survey_data_id' => $latestSurveyData->id,
-                'contact_no' => $latestSurveyData->contact_no,
-                'user_id' => auth()->user()->id
+                [
+                    'survey_data_id' => $latestSurveyData->id,
+                    'contact_no' => $latestSurveyData->contact_no,
+                    'user_id' => auth()->user()->id
                 ]
-            );
-            
-            group_code::create(['code'=>$request->to,'survey_data_id'=>$latestSurveyData->id]);
-            group_code::where('survey_data_id',$surveyData->id)->delete();
-            $surveyData->delete();
-            
+        );
+
+        group_code::create(['code' => $request->to, 'survey_data_id' => $latestSurveyData->id]);
+        group_code::where('survey_data_id', $surveyData->id)->delete();
+        $surveyData->delete();
+
         Alert::success('स्थानान्तरण गर्न सफल भयो');
         return redirect()->route('report.survey');
     }
