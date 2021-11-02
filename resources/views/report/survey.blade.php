@@ -23,8 +23,8 @@
                                     {{ __('-प्रयोगकर्ताको नाम छान्नुहोस्-') }}
                                 </option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">
-                                        {{ $user->name }}</option>
+                                <option value="{{ $user->id }}" {{!isset($fetchdata) ? '': ($fetchdata['user_id'] == $user->id ? 'selected' : '')}}>
+                                    {{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -42,7 +42,7 @@
                                     {{ __('-- प्रदेश छान्नुहोस् --') }}
                                 </option>
                                 @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}">
+                                    <option value="{{ $province->id }}" {{!isset($fetchdata) ? '': ($fetchdata['province_id'] == $province->id ? 'selected' : '')}}>
                                         प्रदेश नं {{ $province->EnglishName }}</option>
                                 @endforeach
                             </select>
@@ -61,7 +61,7 @@
                                     {{ __('-- जिल्ला छान्नुहोस् --') }}
                                 </option>
                                 @foreach ($districts as $district)
-                                    <option value="{{ $district->id }}">
+                                    <option value="{{ $district->id }}" {{!isset($fetchdata) ? '': ($fetchdata['district_id'] == $district->id ? 'selected' : '')}}>
                                         {{ $district->NepaliName }}</option>
                                 @endforeach
                             </select>
@@ -80,26 +80,8 @@
                                     {{ __('-- गा.पा/ना.पा छान्नुहोस् --') }}
                                 </option>
                                 @foreach ($municipalities as $municipality)
-                                    <option value="{{ $municipality->id }}">
+                                    <option value="{{ $municipality->id }}" {{!isset($fetchdata) ? '': ($fetchdata['municipality_id'] == $municipality->id ? 'selected' : '')}}>
                                         {{ $municipality->NepaliName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-3 mt-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    {{ __('ग्रुप कोड') }}
-                                </span>
-                            </div>
-                            <select name="groupcode" class="custom-select select2" id="groupcode">
-                                <option value="">
-                                    {{ __('-- ग्रुप कोड छान्नुहोस् --') }}
-                                </option>
-                                @foreach ($groupcodes as $groupcode)
-                                    <option value="{{ $groupcode }}">
-                                        {{ $groupcode }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -116,8 +98,26 @@
                                     {{ __('--वार्ड नं छान्नुहोस् --') }}
                                 </option>
                                 @for ($i = 1; $i < 19; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    <option value="{{ $i }}" {{!isset($fetchdata) ? '': ($fetchdata['ward_no'] == $i ? 'selected' : '')}}>{{ $i }}</option>
                                 @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3 mt-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('ग्रुप कोड') }}
+                                </span>
+                            </div>
+                            <select name="groupcode" class="custom-select select2" id="groupcode">
+                                <option value="">
+                                    {{ __('-- ग्रुप कोड छान्नुहोस् --') }}
+                                </option>
+                                @foreach ($groupcodes as $groupcode)
+                                    <option value="{{ $groupcode }}" {{!isset($fetchdata) ? '': ($fetchdata['groupcode'] == $groupcode ? 'selected' : '')}}>
+                                        {{ $groupcode }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -152,7 +152,8 @@
                         $i = 1;
                     @endphp
                     @foreach ($reports as $report)
-                        <tr>
+                       @if ($report->groupCode != null)
+                            <tr>
                             <td class="text-center">{{ $i++ }}</td>
                             <td class="text-center">{{ $report->name }}
                             </td>
@@ -162,7 +163,7 @@
                             <td class="text-center">
                                 {{ 'प्रदेश नं ' . $report->province->NepaliName . ',' . $report->district->NepaliName . ',' . $report->municipality->NepaliName . '-' . "$report->ward_id" }}
                             </td>
-                            <td class="text-center">{{$report->groupCode[0]->code}}</td>
+                            <td class="text-center">{{$report->groupCode->code}}</td>
                             <td class="text-center">{{ $report->user->name }}</td>
                             {{-- <td class="text-center"><a href="{{ route('allowance-type.edit', $report) }}"
                     class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
@@ -175,6 +176,7 @@
                         @csrf
                     </form> --}}
                         </tr>
+                       @endif
                     @endforeach
             </table>
         </div>

@@ -41,7 +41,7 @@ class surveyData extends Model
     }
     public function groupCode()
     {
-        return $this->hasMany(group_code::class);
+        return $this->hasOne(group_code::class);
     }
     public function gender()
     {

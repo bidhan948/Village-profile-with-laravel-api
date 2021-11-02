@@ -76,7 +76,6 @@ class SurveyReportController extends Controller
                 ]
             );
         }
-
         $userClause = $request->user_id == '' ? false : true;
         $user_id = $request->user_id == '' ? 0 : $request->user_id;
 
@@ -100,7 +99,7 @@ class SurveyReportController extends Controller
             ->where('municipality_id', $municipalityClause ? '=' : '!=', $municipality_id)
             ->where('district_id', $districtClause ? '=' : '!=', $district_id)
             ->where('ward_id', $wardClause ? '=' : '!=', $ward_no)
-            ->with('groupCode', function ($q) use ($groupcode,$groupcodeClause) {
+            ->with('groupCode', function ($q) use ($groupcode, $groupcodeClause) {
                 $q->where('code', $groupcodeClause != 0 ? '=' : '!=', $groupcode);
             })->with('gender', 'municipality', 'province', 'district', 'user')->get();
 
@@ -108,6 +107,14 @@ class SurveyReportController extends Controller
         foreach ($groupcodescollection as $key => $groupcode) {
             $groupcodes[] = $key;
         }
+        $fetchData = [
+            'user_id' => $request->user_id,
+            'province_id' => $request->province_id,
+            'district_id' => $request->district_id,
+            'municipality_id' => $request->municipality_id,
+            'groupcode' => $request->groupcode,
+            'ward_no' => $request->ward_no
+        ];
         return view(
             'report.survey',
             [
@@ -116,7 +123,8 @@ class SurveyReportController extends Controller
                 'provinces' => $this->provinces,
                 'districts' => $this->districts,
                 'municipalities' => $this->municipalities,
-                'groupcodes' => $groupcodes
+                'groupcodes' => $groupcodes,
+                'fetchdata' => $fetchData
             ]
         );
     }
