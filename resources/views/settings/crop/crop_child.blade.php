@@ -47,7 +47,8 @@
                                             {{ __('-- बाली अन्तर्गत छान्नुहोस् --') }}
                                         </option>
                                         @foreach ($crops as $crop)
-                                            <option value="{{ $crop->id }}"  {{$crop->id == $crop_child->crop_id ? 'selected' : ''}}>
+                                            <option value="{{ $crop->id }}"
+                                                {{ $crop->id == $crop_child->crop_id ? 'selected' : '' }}>
                                                 {{ $crop->name }}</option>
                                         @endforeach
                                     </select>
@@ -100,24 +101,17 @@
                         $i = 1;
                     @endphp
                     @foreach ($crops as $crop)
-                        <tr class="font-weight-bold">
-                            <td class="text-center"></td>
-                            <td class="text-center">{{ $crop->name }}
-                            </td>
-                            <td class="text-center">
-                            </td>
-                        </tr>
                         @foreach ($crop->children as $child)
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
-                                <td class="text-center">{{ $child->name }}
+                                <td class="text-center">{{ $child->name }} / {{$crop->name}}
                                 </td>
                                 <td class="text-center"><a href="{{ route('crop-child.edit', $child) }}"
                                         class="btn-sm btn-success"><i class="fas fa-edit px-1"></i>
                                         {{ __('सच्याउने') }}</a>
                                     <a href="#" class="btn-sm btn-danger"
                                         onclick="event.preventDefault();
-                                                                                                                        document.getElementById('delete_child{{ $i }}').submit();">
+                                                                                                                                            document.getElementById('delete_child{{ $i }}').submit();">
                                         <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
                                 </td>
                                 <form id="delete_child{{ $i }}"

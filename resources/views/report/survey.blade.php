@@ -6,31 +6,16 @@
             alert("{{ $message }}");
         </script>
     @endif
-    <div class="card text-sm ">
+    <div class="card text-sm">
         <form action="{{ route('report.survey') }}" method="post">
             @csrf
             <div class="card-header my-2">
-                <div class="row my-1">
-                    <div class="col-4">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    {{ __('प्रयोगकर्ताको नाम') }}
-                                </span>
-                            </div>
-                            <select name="user_id" class="custom-select select2" id="user_id">
-                                <option value="">
-                                    {{ __('-प्रयोगकर्ताको नाम छान्नुहोस्-') }}
-                                </option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        {{ !isset($fetchdata) ? '' : ($fetchdata['user_id'] == $user->id ? 'selected' : '') }}>
-                                        {{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-4">
+                @php
+                    $test = isset($fetchdata) ? $fetchdata : '';
+                @endphp
+                {{-- this is a component of dropdown for address --}}
+                    <x-address-dropdown :provinces="$provinces" :test="$test" />
+                {{-- <div class="col-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -49,8 +34,8 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="col-4">
+                    </div> --}}
+                {{-- <div class="col-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -85,6 +70,26 @@
                                     <option value="{{ $municipality->id }}"
                                         {{ !isset($fetchdata) ? '' : ($fetchdata['municipality_id'] == $municipality->id ? 'selected' : '') }}>
                                         {{ $municipality->NepaliName }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div> --}}
+                <div class="row my-1">
+                    <div class="col-4 mt-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    {{ __('प्रयोगकर्ताको नाम') }}
+                                </span>
+                            </div>
+                            <select name="user_id" class="custom-select select2" id="user_id">
+                                <option value="">
+                                    {{ __('-प्रयोगकर्ताको नाम छान्नुहोस्-') }}
+                                </option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}"
+                                        {{ !isset($fetchdata) ? '' : ($fetchdata['user_id'] == $user->id ? 'selected' : '') }}>
+                                        {{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -151,6 +156,7 @@
                         <th class="text-center">{{ __('इच्छाएको व्यक्तिको नाम') }}</th>
                         <th class="text-center">{{ __('ठेगाना ') }}</th>
                         <th class="text-center">{{ __('ग्रुप कोड') }}</th>
+                        <th class="text-center">{{ __('GPS') }}</th>
                         <th class="text-center">{{ __('डाटा संकलन गर्ने') }}</th>
                         <th></th>
                     </tr>
@@ -172,6 +178,7 @@
                                     {{ 'प्रदेश नं ' . $report->province->NepaliName . ',' . $report->district->NepaliName . ',' . $report->municipality->NepaliName . '-' . "$report->ward_id" }}
                                 </td>
                                 <td class="text-center">{{ $report->groupCode->code }}</td>
+                                <td class="text-center">{{ $report->gps_latitude . " " . $report->gps_longitude }}</td>
                                 <td class="text-center">{{ $report->user->name }}</td>
                                 <td class="text-center"><a href="{{ route('survey.transfer', $report) }}"
                                         class="btn-sm btn-success"><i class="fas fa-exchange-alt px-1"></i>
