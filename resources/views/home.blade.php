@@ -18,7 +18,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
                 <div class="inner">
-                    <p class="text-center">{{ __('सिंक भएको डाटाको समूह') }} :</p>
+                    <p class="text-center">{{ __('सिंक भएको डाटाको संख्या') }} :</p>
                     <h3 class="text-center">{{ $syncDataCount }}</h3>
                 </div>
                 <div class="icon">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mt-4 col-5">
-            <h5 class="text-center"><strong>{{__('लिङ्गको आधारमा रिपोर्ट')}}</strong></h5>
+            <h5 class="text-center"><strong>{{__('रिपोर्ट')}}</strong></h5>
             <canvas id="myChart" height="200"></canvas>
         </div>
     </div>

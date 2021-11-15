@@ -3,6 +3,7 @@
 use App\Http\Controllers\MarriageController;
 use App\Http\Controllers\Report\SurveyReportController;
 use App\Http\Controllers\Setting\ForeignCountrySettlementReasonController;
+use App\Http\Controllers\Setting\PostController;
 use App\Http\Controllers\survey\TransferController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     /****************** below route is all for setting****************************/
     Route::prefix('settings')->group(function () {
         Route::resource('marriage', MarriageController::class);
+        Route::resource('post', PostController::class);
         Route::resource('relation', \App\Http\Controllers\Setting\RelationController::class);
         Route::resource('occupation', \App\Http\Controllers\OccupationController::class);
         Route::resource('education', \App\Http\Controllers\EducationController::class);
