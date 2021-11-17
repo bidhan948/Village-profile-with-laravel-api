@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommitteePostController;
 use App\Http\Controllers\MarriageController;
 use App\Http\Controllers\Report\SurveyReportController;
 use App\Http\Controllers\Setting\ForeignCountrySettlementReasonController;
@@ -12,6 +13,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    Route::resource('committee-formed',CommitteePostController::class);
     /****************** below route is all for survey report****************************/
     Route::get('survey-data',[SurveyReportController::class,'index'])->name('report.survey');
     Route::post('survey-data',[SurveyReportController::class,'report'])->name('report.survey');

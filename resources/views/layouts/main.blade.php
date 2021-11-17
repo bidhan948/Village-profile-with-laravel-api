@@ -128,6 +128,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('committee-formed.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    {{ __('समिति गठन') }}
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview @yield('menu_open')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>

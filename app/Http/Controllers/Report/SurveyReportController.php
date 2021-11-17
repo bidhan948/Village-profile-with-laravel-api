@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\helpers\CommitteHelper;
 use App\Http\Controllers\Controller;
 use App\Models\api\surveyData;
 use App\Models\group_code;
@@ -29,10 +30,6 @@ class SurveyReportController extends Controller
     public function index(): View
     {
         $reports = surveyData::with('groupCode', 'gender', 'province', 'municipality', 'district', 'user')->get();
-        $groupcodescollection = group_code::select('code')->get()->groupBy('code');
-        foreach ($groupcodescollection as $key => $groupcode) {
-            $groupcodes[] = $key;
-        }
         return view(
             'report.survey',
             [
@@ -41,7 +38,7 @@ class SurveyReportController extends Controller
                 'provinces' => $this->provinces,
                 'districts' => $this->districts,
                 'municipalities' => $this->municipalities,
-                'groupcodes' => $groupcodes
+                'groupcodes' => (new CommitteHelper())->getByGroup()
             ]
         );
     }
@@ -57,10 +54,6 @@ class SurveyReportController extends Controller
             $request->groupcode == ''
         ) {
             $reports = surveyData::with('groupCode', 'gender', 'province', 'municipality', 'district', 'user')->get();
-            $groupcodescollection = group_code::select('code')->get()->groupBy('code');
-            foreach ($groupcodescollection as $key => $groupcode) {
-                $groupcodes[] = $key;
-            }
             return view(
                 'report.survey',
                 [
@@ -69,7 +62,7 @@ class SurveyReportController extends Controller
                     'provinces' => $this->provinces,
                     'districts' => $this->districts,
                     'municipalities' => $this->municipalities,
-                    'groupcodes' => $groupcodes,
+                    'groupcodes' => (new CommitteHelper())->getByGroup(),
                     'message' => "सबै फिल्ड खाली छ"
                 ]
             );
@@ -101,10 +94,6 @@ class SurveyReportController extends Controller
                 $q->where('code', $groupcodeClause != 0 ? '=' : '!=', $groupcode);
             })->with('gender', 'municipality', 'province', 'district', 'user')->get();
 
-        $groupcodescollection = group_code::select('code')->get()->groupBy('code');
-        foreach ($groupcodescollection as $key => $groupcode) {
-            $groupcodes[] = $key;
-        }
         $fetchData = [
             'user_id' => $request->user_id,
             'province_id' => $request->province_id,
@@ -121,7 +110,7 @@ class SurveyReportController extends Controller
                 'provinces' => $this->provinces,
                 'districts' => $this->districts,
                 'municipalities' => $this->municipalities,
-                'groupcodes' => $groupcodes,
+                'groupcodes' => (new CommitteHelper())->getByGroup(),
                 'fetchdata' => $fetchData
             ]
         );

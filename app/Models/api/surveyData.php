@@ -2,6 +2,7 @@
 
 namespace App\Models\api;
 
+use App\Models\committee_post;
 use App\Models\group_code;
 use App\Models\Setting\district;
 use App\Models\Setting\gender;
@@ -10,6 +11,9 @@ use App\Models\Setting\province;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class surveyData extends Model
@@ -37,28 +41,32 @@ class surveyData extends Model
         'is_transfer'
     ];
 
-    public function user()
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    public function groupCode()
+    public function groupCode() : HasOne
     {
         return $this->hasOne(group_code::class);
     }
-    public function gender()
+    public function gender() : BelongsTo
     {
         return $this->belongsTo(gender::class);
     }
-    public function province()
+    public function province() : BelongsTo
     {
         return $this->belongsTo(province::class,'province_id');
     }
-    public function municipality()
+    public function municipality() : BelongsTo
     {
         return $this->belongsTo(municipality::class);
     }
-    public function district()
+    public function district() : BelongsTo
     {
         return $this->belongsTo(district::class);
+    }
+    public function committee_posts(): HasMany
+    {
+        return $this->hasMany(committee_post::class);
     }
 }
