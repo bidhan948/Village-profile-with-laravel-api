@@ -74,15 +74,15 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('समिति गठन') }} <span
+                                            {{ __('समिति') }} <span
                                                 class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
-                                    <input type="text" value="{{ old('name') }}" name="name"
-                                        class="form-control  @error('name') is-invalid @enderror">
-                                    @error('name')
+                                    <input type="text" value="{{ old('committee') }}" name="committee"
+                                        class="form-control  @error('committee') is-invalid @enderror">
+                                    @error('committee')
                                         <p class="invalid-feedback" style="font-size: 1rem">
-                                            {{ __('समिति गठनको फिल्ड खाली छ ') }}
+                                            {{ __('समितिको फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>

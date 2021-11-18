@@ -16,6 +16,6 @@ class gender extends Model
 
     public function surveys(): HasMany
     {
-        return $this->hasMany(SurveyData::class);
+        return $this->hasMany(SurveyData::class)->where('is_sync',1);
     }
 }
