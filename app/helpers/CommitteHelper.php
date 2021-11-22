@@ -4,11 +4,14 @@ namespace App\helpers;
 
 use App\Models\group_code;
 
-class CommitteHelper 
+class CommitteHelper
 {
-    public function getByGroup(): array
+    public function getByGroup()
     {
-        $groupcodescollection = group_code::select('code')->get()->groupBy('code');
+        $groupcodescollection = group_code::select('code')
+            ->whereHas('surveyData')
+            ->get()
+            ->groupBy('code');
         foreach ($groupcodescollection as $key => $groupcode) {
             $groupcodes[] = $key;
         }

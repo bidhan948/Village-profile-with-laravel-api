@@ -5,12 +5,14 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\api\surveyData;
 use App\Models\group_code;
+use App\Models\log;
 use App\Models\Setting\district;
 use App\Models\Setting\gender;
 use App\Models\Setting\municipality;
 use App\Models\Setting\province;
 use App\Models\Setting\relation;
 use Illuminate\Http\Request;
+use Throwable;
 
 class SurveyController extends Controller
 {
@@ -27,31 +29,55 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         $content = $request->data;
-        // here I have assumed that data is validated already 
-        foreach ($content as $key => $data) {
-            // inserting 
-            $survey_model = new surveyData();
-            $survey_model->name = $data['name'];
-            $survey_model->contact_no = $data['contact_number'];
-            $survey_model->gender_id = $data['gender_id'];
-            $survey_model->desired_person_name = $data['desired_person_name'];
-            $survey_model->relation_id = $data['desired_person_relation_id'];
-            $survey_model->district_id = $data['district_id'];
-            $survey_model->province_id = $data['province_id'];
-            $survey_model->municipality_id = $data['municipality_id'];
-            $survey_model->ward_id = $data['ward_id'];
-            $survey_model->toll_name = $data['tol_name'];
-            $survey_model->gps_latitude = $data['gps_latitude'];
-            $survey_model->gps_longitude = $data['gps_longitude'];
-            $survey_model->remark = $data['remarks'] == 'true' ? 1 : 0;
-            $survey_model->mobile_id = $data['id'];
-            $survey_model->user_id = auth()->user()->id;
 
-            $survey_model->save();
-            $mobile_array[] = $data['id'];
+        $log = new log();
+        $log->user_id = auth()->user()->id;
+        $log->log = json_encode($content, true);
+        $log->save();
+        $device_id = $request->device_id;
+        $mobile_array = [];
+        // here I have assumed that data is validated already 
+       
+        foreach ($content as $key => $data) {
+            try {
+                $survey_model = surveyData::where(
+                    [
+                        'mobile_id' => $data['id'],
+                        'user_id' => auth()->user()->id,
+                        'm_timestmap' => $data['time_stamp']
+                    ]
+                )->first();
+                if(empty($survey_model)) {
+                    $survey_model = new surveyData();
+                }
+                // inserting 
+                $survey_model->name = $data['name'];
+                $survey_model->contact_no = $data['contact_number'];
+                $survey_model->gender_id = $data['gender_id'];
+                // $survey_model->desired_person_name = $data['desired_person_name'];
+                // $survey_model->relation_id = $data['desired_person_relation_id'];
+                $survey_model->district_id = $data['district_id'];
+                $survey_model->province_id = $data['province_id'];
+                $survey_model->m_timestmap = $data['time_stamp'];
+                $survey_model->municipality_id = $data['municipality_id'];
+                $survey_model->ward_id = $data['ward_id'];
+                $survey_model->toll_name = $data['tol_name'];
+                $survey_model->gps_latitude = $data['gps_latitude'];
+                $survey_model->gps_longitude = $data['gps_longitude'];
+                $survey_model->remark = $data['remarks'] == 'true' ? 1 : 0;
+                $survey_model->mobile_id = $data['id'];
+                $survey_model->device_id = $device_id;
+                $survey_model->user_id = auth()->user()->id;
+               
+                $survey_model->save();
+                $mobile_array[] = $data['id'];    
+            } catch (Throwable $e) {
+               
+                continue;
+            }
         }
-        $survey_user = surveyData::select('id', 'ward_id', 'toll_name', 'remark','municipality_id')
-            ->where(['user_id'=> auth()->user()->id,'is_sync'=>0])->get();
+        $survey_user = surveyData::select('id', 'ward_id', 'toll_name', 'remark', 'municipality_id')
+            ->where(['user_id' => auth()->user()->id, 'is_sync' => 0])->get();
 
         foreach ($survey_user as $survey) {
             /*************************** *********/
@@ -83,7 +109,7 @@ class SurveyController extends Controller
                     'code' => $group_code
                 ]
             );
-            surveyData::where('id', $survey->id)->update(['is_sync'=> 1]);
+            surveyData::where('id', $survey->id)->update(['is_sync' => 1]);
             $i++;
         }
         return response()->json([

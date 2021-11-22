@@ -15,65 +15,6 @@
                 @endphp
                 {{-- this is a component of dropdown for address --}}
                     <x-address-dropdown :provinces="$provinces" :test="$test" />
-                {{-- <div class="col-4">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    {{ __('प्रदेश') }}
-                                </span>
-                            </div>
-                            <select name="province_id"
-                                class="custom-select @error('province_id') is-invalid @enderror select2" id="province_id">
-                                <option value="">
-                                    {{ __('-- प्रदेश छान्नुहोस् --') }}
-                                </option>
-                                @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}"
-                                        {{ !isset($fetchdata) ? '' : ($fetchdata['province_id'] == $province->id ? 'selected' : '') }}>
-                                        प्रदेश नं {{ $province->EnglishName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> --}}
-                {{-- <div class="col-4">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    {{ __('जिल्ला') }}
-                                </span>
-                            </div>
-                            <select name="district_id"
-                                class="custom-select @error('district_id') is-invalid @enderror select2" id="district_id">
-                                <option value="">
-                                    {{ __('-- जिल्ला छान्नुहोस् --') }}
-                                </option>
-                                @foreach ($districts as $district)
-                                    <option value="{{ $district->id }}"
-                                        {{ !isset($fetchdata) ? '' : ($fetchdata['district_id'] == $district->id ? 'selected' : '') }}>
-                                        {{ $district->NepaliName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    {{ __('गा.पा/ना.पा') }}
-                                </span>
-                            </div>
-                            <select name="municipality_id" class="custom-select select2" id="municipality_id">
-                                <option value="">
-                                    {{ __('-- गा.पा/ना.पा छान्नुहोस् --') }}
-                                </option>
-                                @foreach ($municipalities as $municipality)
-                                    <option value="{{ $municipality->id }}"
-                                        {{ !isset($fetchdata) ? '' : ($fetchdata['municipality_id'] == $municipality->id ? 'selected' : '') }}>
-                                        {{ $municipality->NepaliName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> --}}
                 <div class="row my-1">
                     <div class="col-4 mt-3">
                         <div class="input-group input-group-sm">
@@ -157,6 +98,7 @@
                         <th class="text-center">{{ __('ठेगाना ') }}</th>
                         <th class="text-center">{{ __('ग्रुप कोड') }}</th>
                         <th class="text-center">{{ __('GPS') }}</th>
+                        <th class="text-center">{{ __('मिति') }}</th>
                         <th class="text-center">{{ __('डाटा संकलन गर्ने') }}</th>
                         <th></th>
                     </tr>
@@ -179,7 +121,8 @@
                                 </td>
                                 <td class="text-center">{{ $report->groupCode->code }}</td>
                                 <td class="text-center">{{ $report->gps_latitude . " " . $report->gps_longitude }}</td>
-                                <td class="text-center">{{ $report->user->name }}</td>
+                                <td class="text-center">{{ $report->created_at }}</td>
+                                <td class="text-center">{{ $report->user == "null" ? "--" : $report->user->name }}</td>
                                 <td class="text-center"><a href="{{ route('survey.transfer', $report) }}"
                                         class="btn-sm btn-success"><i class="fas fa-exchange-alt px-1"></i>
                                         {{ __('स्थानान्तरण गर्नुहोस्') }}</a>

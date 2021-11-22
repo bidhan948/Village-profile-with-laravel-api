@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function index(): View
     {
         $samuhaCount = group_code::whereNull('deleted_at')
+            ->whereHas('surveyData')
             ->get()
             ->groupBy('code')
             ->count();
@@ -41,7 +42,6 @@ class HomeController extends Controller
                 ->groupBy('ward_id')->values();
         }
 
-        // dd($wards);
         return view('home', compact(
             [
                 'samuhaCount',

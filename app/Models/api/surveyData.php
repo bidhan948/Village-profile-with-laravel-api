@@ -37,6 +37,8 @@ class surveyData extends Model
         'gps_longitude',
         'remark',
         'mobile_id',
+        'm_timestmap',
+        'device_id',
         'is_sync',
         'is_transfer'
     ];
