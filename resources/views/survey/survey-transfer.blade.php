@@ -16,7 +16,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form method="post" class="ml-3" action="{{route('survey.transfer',$surveyData)}}">
+            <form method="post" class="ml-3" action="{{ route('survey.transfer', $surveyData) }}">
                 @csrf
                 <div class="row " style="margin-left:-30px;">
                     <div class="col-4">
@@ -57,8 +57,7 @@
                                 <span class="input-group-text">
                                     {{ __('To ग्रुप कोड') }}<span class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
-                            </div>
-                            <select name="to" class="custom-select select2 @error('to') is-invalid @enderror" id="to">
+                            </div><select name="to" class="custom-select select2 @error('to') is-invalid @enderror" id="to">
                                 <option value="">
                                     {{ __('-- ग्रुप कोड छान्नुहोस् --') }}
                                 </option>
