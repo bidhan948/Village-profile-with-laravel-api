@@ -6,6 +6,11 @@
             alert("{{ $message }}");
         </script>
     @endif
+    <style>
+        .pagination{
+            margin-top:1.5rem;
+        }
+    </style>
     <div class="card text-sm">
         <form action="{{ route('report.survey') }}" method="post">
             @csrf
@@ -87,14 +92,14 @@
         </form>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-responsive-sm table-bordered table-striped">
+            <table class="table table-responsive-sm table-bordered table-striped">
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
                         <th class="text-center">{{ __('नाम') }}</th>
                         <th class="text-center">{{ __('लिङ्ग') }}</th>
                         <th class="text-center">{{ __('सम्पर्क नं') }}</th>
-                        <th class="text-center">{{ __('इच्छाएको व्यक्तिको नाम') }}</th>
+                        {{-- <th class="text-center">{{ __('इच्छाएको व्यक्तिको नाम') }}</th> --}}
                         <th class="text-center">{{ __('ठेगाना ') }}</th>
                         <th class="text-center">{{ __('ग्रुप कोड') }}</th>
                         <th class="text-center">{{ __('GPS') }}</th>
@@ -105,17 +110,17 @@
                 </thead>
                 <tbody>
                     @php
-                        $i = 1;
+                        $i =  request('page') == 1 ? 1 : ((request('page') - 1)* 25) + 1;
                     @endphp
                     @foreach ($reports as $report)
                         @if ($report->groupCode != null)
                             <tr>
-                                <td class="text-center">{{ $i++ }}</td>
+                                <td class="text-center">{{ $i++  }}</td>
                                 <td class="text-center">{{ $report->name }}
                                 </td>
                                 <td class="text-center">{{ $report->gender->name }}</td>
                                 <td class="text-center">{{ $report->contact_no }}</td>
-                                <td class="text-center">{{ $report->desired_person_name }}</td>
+                                {{-- <td class="text-center">{{ $report->desired_person_name }}</td> --}}
                                 <td class="text-center">
                                     {{ 'प्रदेश नं ' . $report->province->NepaliName . ',' . $report->district->NepaliName . ',' . $report->municipality->NepaliName . '-' . "$report->ward_id" }}
                                 </td>
@@ -131,6 +136,7 @@
                         @endif
                     @endforeach
             </table>
+            {{$reports->links()}}
         </div>
         <!-- /.card-body -->
     </div>
