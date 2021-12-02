@@ -109,9 +109,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $i =  request('page') == 1 ? 1 : ((request('page') - 1)* 25) + 1;
-                    @endphp
+                     @if(request('page') == "")
+                        @php
+                            $i = 1;
+                        @endphp
+                    @else
+                        @php
+                            $i = request('page') == 1 ? 1 : ((request('page') - 1)* 25) + 1;
+                        @endphp
+                    @endif
                     @foreach ($reports as $report)
                         @if ($report->groupCode != null)
                             <tr>

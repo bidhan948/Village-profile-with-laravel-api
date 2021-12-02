@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\CommitteHelper;
 use App\Models\api\surveyData;
-use App\Models\group_code;
 use App\Models\Setting\gender;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -17,30 +18,26 @@ class HomeController extends Controller
 
     public function index(): View
     {
-        $samuhaCount = group_code::whereNull('deleted_at')
-            ->whereHas('surveyData')
-            ->get()
-            ->groupBy('code')
-            ->count();
+        $samuhaCount = collect((new CommitteHelper())->getByGroup())->count();
+
         $syncDataCount = surveyData::where('is_sync', 1)
             ->whereNull('deleted_at')->count();
 
         $genderCount = gender::withCount(['surveys'])->get();
 
-        $municipalities = surveyData::select('id', 'municipality_id', 'ward_id')
-            ->where('is_sync', 1)
-            ->with('municipality:id,NepaliName')
-            ->get()
-            ->groupBy('municipality_id');
+        $mun_wards = (new CommitteHelper())->getMunicipalityDetail();
+        $municipality_name = $mun_wards['municipality_name'];
+        $wards = $mun_wards['wards'];
 
-        foreach ($municipalities as $key => $municipality) {
-            $municipality_name[] = $municipality[0]->municipality->NepaliName;
-            $wards[] = surveyData::select('ward_id', 'municipality_id')
-                ->with('municipality:id,NepaliName')
-                ->where('municipality_id', $key)
-                ->get()
-                ->groupBy('ward_id')->values();
-        }
+        $data = (DB::select("SELECT sd.municipality_id, COUNT('name') as member_count,
+            GROUP_CONCAT(DISTINCT(gc.code)) 
+            As code, 
+            COUNT(DISTINCT(gc.code)) As count
+            FROM survey_data 
+            AS sd INNER JOIN 
+            group_codes AS gc ON
+            gc.survey_data_id=sd.id 
+            GROUP BY sd.municipality_id"));
 
         return view('home', compact(
             [
@@ -48,7 +45,8 @@ class HomeController extends Controller
                 'syncDataCount',
                 'genderCount',
                 'municipality_name',
-                'wards'
+                'wards',
+                'data'
             ]
         ));
     }

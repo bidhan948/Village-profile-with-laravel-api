@@ -2,39 +2,44 @@
 @section('title', 'Dashboard')
 @section('main_content')
     <div class="row d-flex justify-content-center text-sm">
-            <div class="mt-2 col-4">
+        @foreach ($municipality_name as $key => $mun_name)
+            <div class="mt-2 col-3">
                 <!-- small box -->
-                <div class="small-box bg-success">
+                <div class="small-box bg-primary">
                     <div class="inner">
-                        <p class="text-center">{{ __('समुहको संख्या') }} :</p>
-                        <h3 class="text-center">{{ $samuhaCount }} </h3>
+                        <p class="text-center">{{ $mun_name }} </p>
+                        <p>{{ __('समिति संख्या : ') }} <span style="font-size: 1.2rem">
+                                @foreach ($data as $singledata)
+                                    @if ($singledata->municipality_id == $key)
+                                        {{ $singledata->count }}
+                                    @endif
+                                @endforeach
+                            </span></p>
+
+                        <p>
+                            {{ __('सदस्यको संख्या :') }} <span style="font-size: 1.2rem">
+                                @foreach ($data as $singledata)
+                                    @if ($singledata->municipality_id == $key)
+                                        {{ $singledata->member_count }}
+                                    @endif
+                                @endforeach
+                        </p>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-book-reader"></i>
                     </div>
                 </div>
             </div>
-        <div class="mt-2 col-4">
-            <!-- small box -->
-            <div class="small-box bg-primary">
-                <div class="inner">
-                    <p class="text-center">{{ __('सिंक भएको डाटाको संख्या') }} :</p>
-                    <h3 class="text-center">{{ $syncDataCount }}</h3>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-sync"></i>
-                </div>
-            </div>
-        </div>
+        @endforeach
         <div class="mt-4 col-5">
-            <h5 class="text-center"><strong>{{__('रिपोर्ट')}}</strong></h5>
+            <h5 class="text-center"><strong>{{ __('रिपोर्ट') }}</strong></h5>
             <canvas id="myChart" height="200"></canvas>
         </div>
     </div>
     {{-- this is script for pie chart --}}
     <script>
         let ctx = document.getElementById('myChart').getContext('2d');
-        let labels = ['महिला','पुरुष', 'तेस्रो लिङ्गी'];
+        let labels = ['महिला', 'पुरुष', 'तेस्रो लिङ्गी'];
         let colorHex = ['#FB3640', '#253D5B', '#EFCA08'];
 
         let myChart = new Chart(ctx, {
@@ -42,8 +47,8 @@
             data: {
                 datasets: [{
                     data: [
-                        @foreach ($genderCount as $count) 
-                            {{ $count->surveys_count . ','}}
+                        @foreach ($genderCount as $count)
+                            {{ $count->surveys_count . ',' }}
                         @endforeach
                     ],
                     backgroundColor: colorHex

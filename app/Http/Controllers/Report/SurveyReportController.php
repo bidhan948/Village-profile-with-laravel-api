@@ -53,7 +53,7 @@ class SurveyReportController extends Controller
             $request->municipality_id == '' &&
             $request->groupcode == ''
         ) {
-            $reports = surveyData::with('groupCode', 'gender', 'province', 'municipality', 'district', 'user')->get();
+            $reports = surveyData::with('groupCode', 'gender', 'province', 'municipality', 'district', 'user')->paginate(25);
             return view(
                 'report.survey',
                 [
@@ -92,7 +92,7 @@ class SurveyReportController extends Controller
             ->where('ward_id', $wardClause ? '=' : '!=', $ward_no)
             ->with('groupCode', function ($q) use ($groupcode, $groupcodeClause) {
                 $q->where('code', $groupcodeClause != 0 ? '=' : '!=', $groupcode);
-            })->with('gender', 'municipality', 'province', 'district', 'user')->get();
+            })->with('gender', 'municipality', 'province', 'district', 'user')->paginate(25);
 
         $fetchData = [
             'user_id' => $request->user_id,
