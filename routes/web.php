@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     /****************** below route is all for system setting****************************/
     Route::prefix('system-settings')->group(function () {
+        Route::get('assign-permssion/{role}', [ManagePermissionController::class,'assignPermission'])->name('assign-permssion');
         Route::resource('role', RoleController::class);
         Route::resource('permission-manage', ManagePermissionController::class);
         Route::resource('post', PostController::class);

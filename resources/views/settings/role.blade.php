@@ -12,7 +12,7 @@
                 <div class="card-text">
                     <p class="mb-0">{{ __('भूमिका सच्याउने') }}</p>
                 </div>
-                <div class=" card-body">
+                <div class="card-body">
                     <form method="post" action="{{ route('role.update', $role) }}">
                         @csrf
                         @method('PUT')
@@ -81,6 +81,8 @@
                                 @if ($role->id != 1)
                                     <a href="{{ route('role.edit', $role) }}" class="btn-sm btn-success"><i
                                             class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                                    <a href="{{ route('assign-permssion', $role) }}" class=" btn-sm btn-danger"><i
+                                            class="fas fa-sync px-1"></i>{{ __('अनुमति प्रबन्ध गर्नुहोस्') }}</a>
                                 @endif
                             </td>
                         </tr>

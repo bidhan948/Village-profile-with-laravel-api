@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\System_setting;
 
+use App\helpers\SystemHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class ManagePermissionController extends Controller
 {
@@ -42,14 +44,14 @@ class ManagePermissionController extends Controller
         );
     }
 
-    public function update(Request $request,permission $permission): RedirectResponse
+    public function update(Request $request, permission $permission): RedirectResponse
     {
         $validate = $request->validate([
             'name' => 'required',
             Rule::unique('permissions')
-            ->ignore($permission)
+                ->ignore($permission)
         ]);
-        toast('अनुमति प्रबन्ध सच्याउन सफल भयो ','success');
+        toast('अनुमति प्रबन्ध सच्याउन सफल भयो ', 'success');
         $permission->update($validate);
         return redirect()->route('permission.index');
     }
@@ -59,6 +61,19 @@ class ManagePermissionController extends Controller
         info(auth()->user()->id);
         return redirect()->back();
         $permission->delete();
-        toast('अनुमति प्रबन्ध हटाउन सफल भयो ','success');
+        toast('अनुमति प्रबन्ध हटाउन सफल भयो ', 'success');
+    }
+
+    /************************this is for assigning a permission to role*******************************/
+    public function assignPermission(Role $role): View
+    {
+        $data = (new SystemHelper())->getPermission();
+
+        return view('system_setting.assign_permission', [
+            'permissions' => $data['permission'],
+            'model' => $data['model'],
+            'all_permissions' => $data['allpermissions'],
+            'role' => $role,
+        ]);
     }
 }
