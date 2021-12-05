@@ -11,7 +11,7 @@
                         <p>{{ __('समिति संख्या : ') }} <span style="font-size: 1.2rem">
                                 @foreach ($data as $singledata)
                                     @if ($singledata->municipality_id == $key)
-                                        {{ $singledata->count }}
+                                        {{ Nepali($singledata->count) }}
                                     @endif
                                 @endforeach
                             </span></p>
@@ -20,7 +20,7 @@
                             {{ __('सदस्यको संख्या :') }} <span style="font-size: 1.2rem">
                                 @foreach ($data as $singledata)
                                     @if ($singledata->municipality_id == $key)
-                                        {{ $singledata->member_count }}
+                                        {{ Nepali($singledata->member_count) }}
                                     @endif
                                 @endforeach
                         </p>

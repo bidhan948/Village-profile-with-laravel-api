@@ -74,7 +74,7 @@
                     @endphp
                     @foreach ($roles as $role)
                         <tr>
-                            <td class="text-center">{{ $i++ }}</td>
+                            <td class="text-center">{{ Nepali($i++) }}</td>
                             <td class="text-center">{{ $role->name }}
                             </td>
                             <td class="text-center">

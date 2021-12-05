@@ -29,7 +29,8 @@ class HomeController extends Controller
         $municipality_name = $mun_wards['municipality_name'];
         $wards = $mun_wards['wards'];
 
-        $data = (DB::select("SELECT sd.municipality_id, COUNT('name') as member_count,
+        $data = (DB::select("SELECT sd.municipality_id, 
+            COUNT('name') as member_count,
             GROUP_CONCAT(DISTINCT(gc.code)) 
             As code, 
             COUNT(DISTINCT(gc.code)) As count

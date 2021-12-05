@@ -121,7 +121,7 @@
                     @foreach ($reports as $report)
                         @if ($report->groupCode != null)
                             <tr>
-                                <td class="text-center">{{ $i++  }}</td>
+                                <td class="text-center">{{ Nepali($i++) }}</td>
                                 <td class="text-center">{{ $report->name }}
                                 </td>
                                 <td class="text-center">{{ $report->gender->name }}</td>
