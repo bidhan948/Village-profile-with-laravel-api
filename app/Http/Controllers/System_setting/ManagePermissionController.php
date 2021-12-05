@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Http\Controllers\System_setting;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Permission;
+
+class ManagePermissionController extends Controller
+{
+    private $permissions;
+
+    public function __construct()
+    {
+        $this->permissions = Permission::all();
+    }
+
+    public function index(): View
+    {
+        return view('system_setting.permission', ['permissions' => $this->permissions]);
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $validate = $request->validate(['name' => 'required|unique:permissions']);
+        permission::create($validate);
+        toast('अनुमति प्रबन्ध थप्न सफल भयो ', 'success');
+        return redirect()->back();
+    }
+
+    public function edit(permission $permission): View
+    {
+        return view(
+            'system_setting.permission',
+            [
+                'permissions' => $this->permissions,
+                'permission' => $permission
+            ]
+        );
+    }
+
+    public function update(Request $request,permission $permission): RedirectResponse
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            Rule::unique('permissions')
+            ->ignore($permission)
+        ]);
+        toast('अनुमति प्रबन्ध सच्याउन सफल भयो ','success');
+        $permission->update($validate);
+        return redirect()->route('permission.index');
+    }
+
+    public function destroy(permission $permission): RedirectResponse
+    {
+        info(auth()->user()->id);
+        return redirect()->back();
+        $permission->delete();
+        toast('अनुमति प्रबन्ध हटाउन सफल भयो ','success');
+    }
+}

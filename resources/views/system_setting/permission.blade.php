@@ -1,19 +1,19 @@
 @extends('layouts.main')
-@section('title', 'भूमिका')
+@section('title', 'अनुमति प्रबन्ध')
 @section('menu_open', 'menu_open_system')
 @section('s_child_system', 'block')
-@section('setting_role_system', 'active')
+@section('setting_permission_system', 'active')
 @section('main_content')
 
     {{-- this is start of edit part --}}
-    @if (isset($role))
+    @if (isset($permission))
         <div class="card text-sm mt-1">
             <div class="card-header">
                 <div class="card-text">
-                    <p class="mb-0">{{ __('भूमिका सच्याउने') }}</p>
+                    <p class="mb-0">{{ __('अनुमति प्रबन्ध सच्याउने') }}</p>
                 </div>
                 <div class=" card-body">
-                    <form method="post" action="{{ route('role.update', $role) }}">
+                    <form method="post" action="{{ route('permission.update', $permission) }}">
                         @csrf
                         @method('PUT')
                         <div class="row" style="margin-left:-30px;">
@@ -21,14 +21,14 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('भूमिका') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('अनुमति प्रबन्ध') }} <span class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
-                                    <input type="text" value="{{ $role->name }}" name="name"
+                                    <input type="text" value="{{ $permission->name }}" name="name"
                                         class="form-control  @error('name') is-invalid @enderror">
                                     @error('name')
                                         <p class="invalid-feedback" style="font-size: 1rem">
-                                            {{ __('भूमिकाको फिल्ड खाली छ ') }}
+                                            {{ __('अनुमति प्रबन्धको फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
@@ -49,12 +49,12 @@
         <div class="card-header my-2">
             <div class="row my-1">
                 <div class="col-md-6" style="margin-bottom:-5px;">
-                    <p class="">{{ __('भूमिकाको सुचिहरु') }}</p>
+                    <p class="">{{ __('अनुमति प्रबन्धको सुचिहरु') }}</p>
                 </div>
                 <div class="
                         col-md-6 text-right">
                     <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        {{ __('भूमिका थप्नुहोस') }}</a>
+                        {{ __('अनुमति प्रबन्ध थप्नुहोस') }}</a>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('भूमिका') }}</th>
+                        <th class="text-center">{{ __('अनुमति प्रबन्ध') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -72,16 +72,14 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach ($roles as $role)
+                    @foreach ($permissions as $permission)
                         <tr>
                             <td class="text-center">{{ Nepali($i++) }}</td>
-                            <td class="text-center">{{ $role->name }}
+                            <td class="text-center">{{ $permission->name }}
                             </td>
                             <td class="text-center">
-                                @if ($role->id != 1)
-                                    <a href="{{ route('role.edit', $role) }}" class="btn-sm btn-success"><i
+                                    <a href="{{ route('permission-manage.edit', $permission) }}" class="btn-sm btn-success"><i
                                             class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
-                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -90,32 +88,32 @@
         <!-- /.card-body -->
     </div>
 
-    {{-- modal for adding role status --}}
+    {{-- modal for adding permission status --}}
     <div class="modal fade text-sm" id="modal-lg">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="">{{ __('भूमिका थप्नुहोस') }}</h5>
+                    <h5 class="">{{ __('अनुमति प्रबन्ध थप्नुहोस') }}</h5>
                     <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('role.store') }}">
+                    <form method="post" action="{{ route('permission-manage.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            {{ __('भूमिका') }} <span class="text-danger px-1 font-weight-bold">*</span>
+                                            {{ __('अनुमति प्रबन्ध') }} <span class="text-danger px-1 font-weight-bold">*</span>
                                         </span>
                                     </div>
                                     <input type="text" value="{{ old('name') }}" name="name"
                                         class="form-control  @error('name') is-invalid @enderror">
                                     @error('name')
                                         <p class="invalid-feedback" style="font-size: 1rem">
-                                            {{ __('भूमिकाको फिल्ड खाली छ ') }}
+                                            {{ __('अनुमति प्रबन्धको फिल्ड खाली छ ') }}
                                         </p>
                                     @enderror
                                 </div>
@@ -137,7 +135,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    {{-- end of modal for adding role status --}}
+    {{-- end of modal for adding permission status --}}
 @endsection
 
 @section('scripts')

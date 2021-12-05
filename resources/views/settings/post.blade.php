@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title', 'बैठक समितिको पद')
-@section('menu_open','menu-open')
-@section('s_child','block')
-@section('setting_post', 'active')
+@section('menu_open','menu_open_system')
+@section('s_child_system','block')
+@section('setting_post_system', 'active')
 @section('main_content')
 
     {{-- this is start of edit part --}}
@@ -75,7 +75,7 @@
                     @endphp
                     @foreach ($posts as $post)
                         <tr>
-                            <td class="text-center">{{ $i++ }}</td>
+                            <td class="text-center">{{ Nepali($i++) }}</td>
                             <td class="text-center">{{ $post->name }}
                             </td>
                             <td class="text-center"><a href="{{ route('post.edit', $post) }}"

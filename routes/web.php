@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\CommitteePostController;
-use App\Http\Controllers\MarriageController;
+use App\Http\Controllers\{CommitteePostController, MarriageController};
 use App\Http\Controllers\Report\SurveyReportController;
-use App\Http\Controllers\Setting\ForeignCountrySettlementReasonController;
-use App\Http\Controllers\Setting\PostController;
-use App\Http\Controllers\Setting\RoleController;
+use App\Http\Controllers\Setting\{ForeignCountrySettlementReasonController, PostController, RoleController};
 use App\Http\Controllers\survey\TransferController;
+use App\Http\Controllers\System_setting\ManagePermissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,22 +12,29 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('committee-formed',CommitteePostController::class);
+    Route::resource('committee-formed', CommitteePostController::class);
     /****************** below route is all for survey report****************************/
-    Route::get('survey-data',[SurveyReportController::class,'index'])->name('report.survey');
-    Route::post('survey-data',[SurveyReportController::class,'report'])->name('report.survey');
+    Route::get('survey-data', [SurveyReportController::class, 'index'])->name('report.survey');
+    Route::post('survey-data', [SurveyReportController::class, 'report'])->name('report.survey');
     /****************** below route is all for transfer****************************/
-    Route::get('survey/transfer-detail',[TransferController::class,'index'])->name('transfer.index');
-    Route::get('survey/transfer/{surveyData}',[TransferController::class,'transfer'])->name('survey.transfer');
-    Route::post('survey/transfer/{surveyData}',[TransferController::class,'store'])->name('survey.transfer');
+    Route::get('survey/transfer-detail', [TransferController::class, 'index'])->name('transfer.index');
+    Route::get('survey/transfer/{surveyData}', [TransferController::class, 'transfer'])->name('survey.transfer');
+    Route::post('survey/transfer/{surveyData}', [TransferController::class, 'store'])->name('survey.transfer');
     /****************** below route is all for users****************************/
-    Route::get('user/status-switch/{user}',[UserController::class,'switchStatus'])->name('user.status');
-    Route::resource('user',UserController::class);
+    Route::get('user/status-switch/{user}', [UserController::class, 'switchStatus'])->name('user.status');
+    Route::resource('user', UserController::class);
+
+    /****************** below route is all for system setting****************************/
+    Route::prefix('system-settings')->group(function () {
+        Route::resource('role', RoleController::class);
+        Route::resource('permission-manage', ManagePermissionController::class);
+        Route::resource('post', PostController::class);
+    });
+    /****************** end of system setting****************************/
+
     /****************** below route is all for setting****************************/
     Route::prefix('settings')->group(function () {
         Route::resource('marriage', MarriageController::class);
-        Route::resource('role', RoleController::class);
-        Route::resource('post', PostController::class);
         Route::resource('relation', \App\Http\Controllers\Setting\RelationController::class);
         Route::resource('occupation', \App\Http\Controllers\OccupationController::class);
         Route::resource('education', \App\Http\Controllers\EducationController::class);

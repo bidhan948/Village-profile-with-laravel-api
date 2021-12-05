@@ -136,6 +136,38 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview @yield('menu_open_system')">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-wrench"></i>
+                                <p class="px-2 font-weight-bold">
+                                    {{ __('प्रणालीका सेटिङ्हरू') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: @yield('s_child_system')">
+                                <li class="nav-item">
+                                    <a href="{{ route('role.index') }}"
+                                        class="nav-link @yield('setting_role_system')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('भूमिका') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('post.index') }}"
+                                        class="nav-link @yield('setting_post_system')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('बैठक समितिको पद') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('permission-manage.index') }}"
+                                        class="nav-link @yield('setting_permission_system')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('अनुमति प्रबन्ध') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item has-treeview @yield('menu_open')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cogs"></i>
@@ -145,20 +177,6 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="display: @yield('s_child')">
-                                <li class="nav-item">
-                                    <a href="{{ route('role.index') }}"
-                                        class="nav-link @yield('setting_role')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('भूमिका') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('post.index') }}"
-                                        class="nav-link @yield('setting_post')">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p class="px-2">{{ __('बैठक समितिको पद') }}</p>
-                                    </a>
-                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('relation.index') }}"
                                         class="nav-link @yield('setting_relation')">
