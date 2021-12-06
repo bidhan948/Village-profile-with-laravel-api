@@ -18,6 +18,10 @@ class SystemHelper
         $model = collect($model)->unique();
         $permission = collect($permission)->unique();
 
-        return ['model' => $model, 'permission' => $permission,'allpermissions'=> $permissions_raw];
+        return [
+            'model' => $model,
+            'permission' => $permission,
+            'allpermissions' => $permissions_raw
+        ];
     }
 }

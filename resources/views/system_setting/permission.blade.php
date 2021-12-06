@@ -13,7 +13,7 @@
                     <p class="mb-0">{{ __('अनुमति प्रबन्ध सच्याउने') }}</p>
                 </div>
                 <div class=" card-body">
-                    <form method="post" action="{{ route('permission.update', $permission) }}">
+                    <form method="post" action="{{ route('permission-manage.update', $permission) }}">
                         @csrf
                         @method('PUT')
                         <div class="row" style="margin-left:-30px;">
@@ -75,7 +75,7 @@
                     @foreach ($permissions as $permission)
                         <tr>
                             <td class="text-center">{{ Nepali($i++) }}</td>
-                            <td class="text-center">{{ $permission->name }}
+                            <td class="text-center">{{ Str::replace('_',' ',$permission->name)}}
                             </td>
                             <td class="text-center">
                                     <a href="{{ route('permission-manage.edit', $permission) }}" class="btn-sm btn-success"><i

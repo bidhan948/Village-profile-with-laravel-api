@@ -33,13 +33,13 @@ class ManagePermissionController extends Controller
         return redirect()->back();
     }
 
-    public function edit(permission $permission): View
+    public function edit(permission $permission_manage): View
     {
         return view(
             'system_setting.permission',
             [
                 'permissions' => $this->permissions,
-                'permission' => $permission
+                'permission' => $permission_manage
             ]
         );
     }

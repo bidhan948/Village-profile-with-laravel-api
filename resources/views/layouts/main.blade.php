@@ -106,7 +106,7 @@
                         data-accordion="false">
                         <li class="nav-item">
                             <a href="{{ route('report.survey') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
+                                <i class="nav-icon fas fa-file-invoice"></i>
                                 <p>
                                     {{ __('विवरण') }}
                                 </p>
@@ -114,7 +114,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('transfer.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
+                                <i class="nav-icon fas fa-exchange-alt"></i>
                                 <p>
                                     {{ __('स्थानान्तरणको विवरण') }}
                                 </p>
