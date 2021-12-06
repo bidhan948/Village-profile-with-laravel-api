@@ -59,36 +59,44 @@
             </div>
         </div>
         <!-- /.card-header -->
-        <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('भूमिका') }}</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $i = 1;
-                    @endphp
-                    @foreach ($roles as $role)
+        @can('VIEW_ROLE')
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
                         <tr>
-                            <td class="text-center">{{ Nepali($i++) }}</td>
-                            <td class="text-center">{{ $role->name }}
-                            </td>
-                            <td class="text-center">
-                                @if ($role->id != 1)
-                                    <a href="{{ route('role.edit', $role) }}" class="btn-sm btn-success"><i
-                                            class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
-                                    <a href="{{ route('assign-permssion', $role) }}" class=" btn-sm btn-danger"><i
-                                            class="fas fa-sync px-1"></i>{{ __('अनुमति प्रबन्ध गर्नुहोस्') }}</a>
-                                @endif
-                            </td>
+                            <th class="text-center">{{ __('क्र.स.') }}</th>
+                            <th class="text-center">{{ __('भूमिका') }}</th>
+                            @can('UPDATE_ROLE')
+                                <th></th>
+                            @endcan
                         </tr>
-                    @endforeach
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach ($roles as $role)
+                            <tr>
+                                <td class="text-center">{{ Nepali($i++) }}</td>
+                                <td class="text-center">{{ $role->name }}
+                                </td>
+                                <td class="text-center">
+                                    @if ($role->id != 1)
+                                        @can('UPDATE_ROLE')
+                                            <a href="{{ route('role.edit', $role) }}" class="btn-sm btn-success"><i
+                                                    class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                                        @endcan
+                                        @can('UPDATE_ROLE')
+                                            <a href="{{ route('assign-permssion', $role) }}" class=" btn-sm btn-danger"><i
+                                                    class="fas fa-sync px-1"></i>{{ __('अनुमति प्रबन्ध गर्नुहोस्') }}</a>
+                                        @endcan
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                </table>
+            </div>
+        @endcan
         <!-- /.card-body -->
     </div>
 

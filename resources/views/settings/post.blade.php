@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'बैठक समितिको पद')
-@section('menu_open','menu_open_system')
-@section('s_child_system','block')
+@section('menu_open', 'menu_open_system')
+@section('s_child_system', 'block')
 @section('setting_post_system', 'active')
 @section('main_content')
 
@@ -54,45 +54,53 @@
                 </div>
                 <div class="
                         col-md-6 text-right">
-                        <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
-                            {{ __('बैठक समितिको पद थप्नुहोस') }}</a>
+                    <a class="btn text-white btn-sm btn-primary" data-toggle="modal" data-target="#modal-lg">
+                        {{ __('बैठक समितिको पद थप्नुहोस') }}</a>
                 </div>
             </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-center">{{ __('क्र.स.') }}</th>
-                        <th class="text-center">{{ __('बैठक समितिको पद') }}</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $i = 1;
-                    @endphp
-                    @foreach ($posts as $post)
+            @can('VIEW_POST')
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
                         <tr>
-                            <td class="text-center">{{ Nepali($i++) }}</td>
-                            <td class="text-center">{{ $post->name }}
-                            </td>
-                            <td class="text-center"><a href="{{ route('post.edit', $post) }}"
-                                    class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
-                                <a href="#" class="btn-sm btn-danger"
-                                    onclick="event.preventDefault();
-                                                                                                            document.getElementById('delete_post{{ $i }}').submit();">
-                                    <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
-                            </td>
-                            <form id="delete_post{{ $i }}"
-                                action="{{ route('post.destroy', $post) }}" method="POST" class="d-none">
-                                @method('DELETE')
-                                @csrf
-                            </form>
+                            <th class="text-center">{{ __('क्र.स.') }}</th>
+                            <th class="text-center">{{ __('बैठक समितिको पद') }}</th>
+                            @can('UPDATE_POST')
+                                <th></th>
+                            @endcan
                         </tr>
-                    @endforeach
-            </table>
+                    </thead>
+                    <tbody>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach ($posts as $post)
+                            <tr>
+                                <td class="text-center">{{ Nepali($i++) }}</td>
+                                <td class="text-center">{{ $post->name }}
+                                </td>
+                                @can('UPDATE_POST')
+                                    <td class="text-center"><a href="{{ route('post.edit', $post) }}"
+                                            class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                                       @can('DELETE_POST')      
+                                       <a href="#" class="btn-sm btn-danger"
+                                       onclick="event.preventDefault();
+                                                                                                                       document.getElementById('delete_post{{ $i }}').submit();">
+                                       <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
+                                       @endcan
+                                    </td>
+                                @endcan
+                                <form id="delete_post{{ $i }}" action="{{ route('post.destroy', $post) }}"
+                                    method="POST" class="d-none">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                            </tr>
+                        @endforeach
+                </table>
+            @endcan
         </div>
         <!-- /.card-body -->
     </div>
@@ -103,10 +111,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="">{{ __('बैठक समितिको पद थप्नुहोस') }}</h5>
-                    <button type=" button"
-                        class="close" data-dismiss="modal" aria-label="Close">
+                    <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                        </button>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="{{ route('post.store') }}">
