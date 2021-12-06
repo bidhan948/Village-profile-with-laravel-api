@@ -62,18 +62,37 @@ class ManagePermissionController extends Controller
         return redirect()->back();
         $permission->delete();
         toast('अनुमति प्रबन्ध हटाउन सफल भयो ', 'success');
+        return redirect()->back();
     }
 
     /************************this is for assigning a permission to role*******************************/
     public function assignPermission(Role $role): View
     {
         $data = (new SystemHelper())->getPermission();
-
         return view('system_setting.assign_permission', [
             'permissions' => $data['permission'],
             'model' => $data['model'],
             'all_permissions' => $data['allpermissions'],
             'role' => $role,
         ]);
+    }
+
+    public function assignPermissionStore(Request $request): RedirectResponse
+    {
+        if ($request->permission == "") {
+            toast('अनुमति प्रबन्ध फिल्ड छ', 'error');
+            return redirect()->back();
+        }
+        foreach ($request->permission as $key => $permission) {
+            $roleId = $key;
+            foreach ($permission as $permissionId) {
+                $singlePermission = Permission::findById($permissionId);
+                $permissionArr[] = $singlePermission->name;
+            }
+        }
+        $role = Role::findById($roleId);
+        $role->syncPermissions($permissionArr);
+        toast('अनुमति प्रबन्ध हाल्न सफल भयो ', 'success');
+        return redirect()->route('role.index');
     }
 }

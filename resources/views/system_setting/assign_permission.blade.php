@@ -15,11 +15,12 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="" method="post">
+            <form action="{{ route('assign_permission_store') }}" method="post">
+                @csrf
                 <table class="table table-bordered table-striped">
                     <tbody>
                         @php
-                            $i = 0;
+                            $i = -1;
                         @endphp
                         <tr>
                             <td class="text-center" colspan="7">
@@ -49,24 +50,26 @@
                                                 <input class="permission" type="checkbox"
                                                     name="permission[{{ $role->id }}][]"
                                                     class="form-control form-control-sm" name="permission"
-                                                    style="height:20px;" value="{{ $all_permissions[$i++]->id }}">
-                                            </div>
-                                        </div>
-                                    </td>
-                                @endforeach
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <button class="btn btn-primary btn-sm">{{ __('Save Changes') }} <i
-                                class="fas fa-check px-1"></i></button>
-                    </div>
-                </div>
-            </form>
+                                                    style="height:20px;" value="{{ $all_permissions[++$i]->id }}"
+                                                    @foreach ($role->permissions as $permission)
+                                                {{ $permission->id == $all_permissions[$i]->id ? 'checked' : '' }}
+                                @endforeach>
         </div>
-        <!-- /.card-body -->
+    </div>
+    </td>
+    @endforeach
+    </tr>
+    @endforeach
+    </tbody>
+    </table>
+    <div class="form-group">
+        <div class="col-md-6">
+            <button class="btn btn-primary btn-sm">{{ __('Save Changes') }} <i class="fas fa-check px-1"></i></button>
+        </div>
+    </div>
+    </form>
+    </div>
+    <!-- /.card-body -->
     </div>
 @endsection
 @section('scripts')
