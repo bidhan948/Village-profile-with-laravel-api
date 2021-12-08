@@ -32,15 +32,14 @@
                     @foreach ($groupcodes as $key => $groupcode)
                         <tr>
                             <td class="text-center">{{ $i++ }}</td>
-                            <td class="text-center">{{ $groupcode }}
+                            <td class="text-center">{{ Nepali($groupcode) }}
                             </td>
-                            <td class="text-center"> <p class="btn btn-warning btn-sm mb-0"> {{ $post_counts[$key] . " " . __(" जना पदाधकारी") }}</p>
+                            <td class="text-center"> <p class="btn btn-warning btn-sm mb-0"> {{ Nepali($post_counts[$groupcode]) . " " . __(" जना पदाधकारी") }}</p>
                             </td>
                             <td class="text-center"><a href="{{ route('committee-formed.edit', $groupcode) }}"
                                     class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
                                 <a href="#" class="btn-sm btn-danger"
-                                    onclick="event.preventDefault();
-                                                                                                            document.getElementById('delete_committee_post{{ $i }}').submit();">
+                                    onclick="event.preventDefault(); document.getElementById('delete_committee_post{{ $i }}').submit();">
                                     <i class="fas fa-trash-alt px-2"></i>{{ __('हटाउनुहोस्') }}</a>
                             </td>
                             <form id="delete_committee_post{{ $i }}"

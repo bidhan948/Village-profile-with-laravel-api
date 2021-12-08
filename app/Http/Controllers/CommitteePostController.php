@@ -7,6 +7,7 @@ use App\Models\api\surveyData;
 use App\Models\committee_post;
 use App\Models\group_code;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CommitteePostController extends Controller
@@ -16,28 +17,17 @@ class CommitteePostController extends Controller
     {
         $groupcodes = (new CommitteHelper())->getByGroup();
         foreach ($groupcodes as $groupcode) {
-            $post_counts[] = committee_post::where('committee', $groupcode)->count();
+            $post_counts[$groupcode] = group_code::where('code', $groupcode)->count();
         }
         return view('committee_formed', compact(['groupcodes','post_counts']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         //
     }
