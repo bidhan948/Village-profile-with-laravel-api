@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurveyTransferDetailsTable extends Migration
+class CreateFiscalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateSurveyTransferDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_transfer_details', function (Blueprint $table) {
+        Schema::create('fiscals', function (Blueprint $table) {
             $table->id();
-            $table->string('from');
-            $table->string('to');
-            $table->foreignId('user_id')->constrained();
-            $table->string('contact_no');
-            $table->text('remarks')->nullable();
+            $table->string('fiscal_year');
+            $table->boolean('is_current')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreateSurveyTransferDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey_transfer_details');
+        Schema::dropIfExists('fiscals');
     }
 }

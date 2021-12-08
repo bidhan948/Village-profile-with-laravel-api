@@ -153,6 +153,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('fiscal-year.index') }}"
+                                        class="nav-link @yield('setting_fiscal_system')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="px-2">{{ __('आर्थिक बर्ष ') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('post.index') }}"
                                         class="nav-link @yield('setting_post_system')">
                                         <i class="far fa-circle nav-icon"></i>

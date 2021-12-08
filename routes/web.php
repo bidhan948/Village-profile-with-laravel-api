@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CommitteePostController, MarriageController};
+use App\Http\Controllers\{CommitteePostController, FiscalController, MarriageController};
 use App\Http\Controllers\Report\SurveyReportController;
 use App\Http\Controllers\Setting\{ForeignCountrySettlementReasonController, PostController, RoleController};
 use App\Http\Controllers\survey\TransferController;
@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('assign-permssion/{role}', [ManagePermissionController::class,'assignPermission'])->name('assign-permssion');
         Route::post('assign-permssion', [ManagePermissionController::class,'assignPermissionStore'])->name('assign_permission_store');
         Route::resource('role', RoleController::class);
+        Route::resource('fiscal-year', FiscalController::class);
         Route::resource('permission-manage', ManagePermissionController::class);
         Route::resource('post', PostController::class);
     });
