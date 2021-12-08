@@ -7,6 +7,7 @@ use App\Models\disability_card;
 use App\Models\disability_tool;
 use App\Models\disability_type;
 use App\Models\education;
+use App\Models\group_code;
 use App\Models\marriage;
 use App\Models\occupation;
 use App\Models\Setting\allowance_type;
@@ -46,6 +47,8 @@ use App\Models\Setting\waste_management;
 use App\Models\Setting\water_purify;
 use App\Models\Setting\yearly_expenditure;
 use App\Models\Setting\yearly_income;
+use Illuminate\Http\Request;
+
 class ProfileDataController extends Controller
 {
     public function index()
@@ -95,6 +98,15 @@ class ProfileDataController extends Controller
         $data['districts'] = district::all();
         $data['municipalities'] = municipality::all();
 
+        return response()->json($data, 200);
+    }
+
+    public function getGroupMember(Request $request)
+    {
+        $data['groupMembers'] = group_code::query()
+            ->where('code', $request['groupCode'])
+            ->with('surveyData:id,name,contact_no')
+            ->get();
         return response()->json($data, 200);
     }
 }

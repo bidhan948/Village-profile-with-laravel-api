@@ -14,3 +14,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('profile/get-data', [ProfileDataController::class, 'index'])->name('profile.index');
 });
 Route::get('address', [AddressDropdownController::class, 'province'])->name('api.address');
+Route::get('groupcode', [ProfileDataController::class, 'getGroupMember'])->name('api.groupcode');
