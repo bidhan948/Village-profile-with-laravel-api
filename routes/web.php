@@ -12,6 +12,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('committe-formed/assign/{code}',[CommitteePostController::class,'assignPost'])->name('committee-formed.assign');
     Route::resource('committee-formed', CommitteePostController::class);
     /****************** below route is all for survey report****************************/
     Route::get('survey-data', [SurveyReportController::class, 'index'])->name('report.survey');

@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\helpers\CommitteHelper;
+use App\Http\Requests\CommittePostAssigned;
 use App\Models\api\surveyData;
 use App\Models\committee_post;
 use App\Models\group_code;
+use App\Models\Setting\post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CommitteePostController extends Controller
 {
+    public $posts;
+
+    public function __construct()
+    {
+        $this->posts = post::query()->get();
+    }
 
     public function index(): View
     {
@@ -19,61 +27,37 @@ class CommitteePostController extends Controller
         foreach ($groupcodes as $groupcode) {
             $post_counts[$groupcode] = group_code::where('code', $groupcode)->count();
         }
-        return view('committee_formed', compact(['groupcodes','post_counts']));
+        return view('committee_formed', compact(['groupcodes', 'post_counts']));
     }
 
-    public function create(): View
+    public function assignPost($code): View
     {
-        //
+        $members = group_code::query()
+            ->where('code', $code)
+            ->with('surveyData:id,name,email,post_id,contact_no')
+            ->get();
+
+        return view(
+            'committee_formed.committe_formed_assign',
+            [
+                'members' => $members,
+                'posts' => $this->posts,
+                'code' => $code
+            ]
+        );
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(CommittePostAssigned $request): RedirectResponse
     {
-        //
-    }
+        foreach ($request->email as $member_id => $email) {
+            surveyData::where('id', $member_id)
+                ->update([
+                    'email' => $email[0],
+                    'post_id' => $request->post_id[$member_id][0]
+                ]);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\committee_post  $committee_post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(committee_post $committee_post)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\committee_post  $committee_post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(committee_post $committee_post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\committee_post  $committee_post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, committee_post $committee_post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\committee_post  $committee_post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(committee_post $committee_post)
-    {
-        //
+        toast('पदाधिकारी चयन हुन सफल भयो', 'success');
+        return redirect()->route('committee-formed.index');
     }
 }

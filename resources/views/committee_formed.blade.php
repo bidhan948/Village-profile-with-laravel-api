@@ -37,8 +37,8 @@
                                     data-toggle="modal" data-target="#modal-lg">
                                     {{ Nepali($post_counts[$groupcode]) . ' ' . __(' जना पदाधकारी') }}</a>
                             </td>
-                            <td class="text-center"><a href="{{ route('committee-formed.edit', $groupcode) }}"
-                                    class="btn-sm btn-success"><i class="fas fa-edit px-1"></i> {{ __('सच्याउने') }}</a>
+                            <td class="text-center"><a href="{{ route('committee-formed.assign', $groupcode) }}"
+                                    class="btn-sm btn-success"><i class="fas fa-gavel px-1"></i> {{ __('पदाधिकारी चयन') }}</a>
                             </td>
                         </tr>
                     @endforeach
@@ -115,9 +115,7 @@
                             }
                         })
                         .then(function(response) {
-                            console.log(response);
                             vm.groupMembers = response.data.groupMembers;
-                            console.log(vm.groupMembers);
                         })
                         .catch(function(error) {
                             console.log(error);

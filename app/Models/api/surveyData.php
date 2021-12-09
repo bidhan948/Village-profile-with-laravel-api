@@ -7,6 +7,7 @@ use App\Models\group_code;
 use App\Models\Setting\district;
 use App\Models\Setting\gender;
 use App\Models\Setting\municipality;
+use App\Models\Setting\post;
 use App\Models\Setting\province;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -40,35 +41,48 @@ class surveyData extends Model
         'm_timestmap',
         'device_id',
         'is_sync',
-        'is_transfer'
+        'is_transfer',
+        'email',
+        'post_id'
     ];
 
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
     public function groupCode() : HasOne
     {
         return $this->hasOne(group_code::class);
     }
+
     public function gender() : BelongsTo
     {
         return $this->belongsTo(gender::class);
     }
+
     public function province() : BelongsTo
     {
         return $this->belongsTo(province::class,'province_id');
     }
+
     public function municipality() : BelongsTo
     {
         return $this->belongsTo(municipality::class);
     }
+
     public function district() : BelongsTo
     {
         return $this->belongsTo(district::class);
     }
+    
     public function committee_posts(): HasMany
     {
         return $this->hasMany(committee_post::class);
+    }
+
+    public function Post(): BelongsTo
+    {
+        return $this->belongsTo(post::class);
     }
 }
