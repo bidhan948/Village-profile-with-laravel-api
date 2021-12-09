@@ -38,7 +38,8 @@
                                     {{ Nepali($post_counts[$groupcode]) . ' ' . __(' जना पदाधकारी') }}</a>
                             </td>
                             <td class="text-center"><a href="{{ route('committee-formed.assign', $groupcode) }}"
-                                    class="btn-sm btn-success"><i class="fas fa-gavel px-1"></i> {{ __('पदाधिकारी चयन') }}</a>
+                                    class="btn-sm btn-success"><i class="fas fa-gavel px-1"></i>
+                                    {{ __('पदाधिकारी चयन') }}</a>
                             </td>
                         </tr>
                     @endforeach
@@ -49,7 +50,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="">{{ __('समिति गठन थप्नुहोस') }}</h5>
+                            <h5 class="">@{{samitiName}}का सदस्य</h5>
                             <button type=" button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -58,18 +59,18 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('क्र. स.') }}</th>
-                                        <th>{{ __('नाम') }}</th>
-                                        <th>{{ __('pad') }}</th>
-                                        <th>{{ __('मोवाइल नं.') }}</th>
+                                        <th class="text-center">{{ __('क्र. स.') }}</th>
+                                        <th class="text-center">{{ __('नाम') }}</th>
+                                        <th class="text-center">{{ __('पद') }}</th>
+                                        <th class="text-center">{{ __('मोवाइल नं.') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item,index) in groupMembers">
                                         <td class="text-center">@{{ index + 1 }}</td>
                                         <td class="text-center">@{{ item.survey_data.name }}</td>
-                                        <td class="text-center">{{ __('सदस्य') }}</td>
-                                        <td class="text-center">@{{ item.survey_data.contact_no}}</td>
+                                        <td class="text-center">@{{item.survey_data.post == null ? 'सदस्य' : item.survey_data.post.name }}</td>
+                                        <td class="text-center">@{{ item.survey_data.contact_no }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -104,26 +105,28 @@
         new Vue({
             el: "#app",
             data: {
-                groupMembers: []
+                groupMembers: [],
+                samitiName: ''
             },
             methods: {
                 showSmaiti: function(groupCode) {
-                    let vm = this;
-                    axios.get("{{ route('api.groupcode') }}", {
-                            params: {
-                                groupCode: groupCode
-                            }
-                        })
-                        .then(function(response) {
-                            vm.groupMembers = response.data.groupMembers;
-                        })
-                        .catch(function(error) {
-                            console.log(error);
-                            alert("Some Problem Occured");
-                        });
-                }
-            },
-            mounted() {}
+                        let vm = this;
+                        axios.get("{{ route('api.groupcode') }}", {
+                                params: {
+                                    groupCode: groupCode
+                                }
+                            })
+                            .then(function(response) {
+                                    vm.groupMembers = response.data.groupMembers;
+                                    vm.samitiName = vm.groupMembers[0].code;
+                            })
+                    .catch(function(error) {
+                        console.log(error);
+                        alert("Some Problem Occured");
+                    });
+            }
+        },
+        mounted() {}
         })
     </script>
 @endsection

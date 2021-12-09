@@ -105,7 +105,9 @@ class ProfileDataController extends Controller
     {
         $data['groupMembers'] = group_code::query()
             ->where('code', $request['groupCode'])
-            ->with('surveyData:id,name,contact_no')
+            ->with('surveyData', function ($q) {
+                $q->with('Post');
+            })
             ->get();
         return response()->json($data, 200);
     }
