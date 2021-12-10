@@ -73,18 +73,3 @@
 
 @endsection
 
-@section('scripts')
-    <script src="{{ asset('vue/bundle.js') }}"></script>
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                groupMembers: []
-            },
-            methods: {
-
-            },
-            mounted() {}
-        })
-    </script>
-@endsection

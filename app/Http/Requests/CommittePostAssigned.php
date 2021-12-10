@@ -24,7 +24,7 @@ class CommittePostAssigned extends FormRequest
     public function rules()
     {
         return [
-            'email.*.*'=> 'present'
+            'email.*.*'=> 'required'
         ];
     }
 }

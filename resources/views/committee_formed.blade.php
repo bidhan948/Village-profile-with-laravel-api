@@ -1,5 +1,8 @@
 @extends('layouts.main')
-@section('title', 'समिति गठन')
+@section('title', 'भूमिका')
+@section('menu_open_meeting', 'menu_open')
+@section('meeting_child_meeting', 'block')
+@section('meeting_committe_formed', 'active')
 @section('main_content')
     <div class="card text-sm ">
         <div class="card-header my-2">
