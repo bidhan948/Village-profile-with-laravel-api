@@ -6,6 +6,7 @@ use App\Models\api\surveyData;
 use App\Models\Setting\post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,13 +28,28 @@ class meeting extends Model
         'survey_data_id',
     ];
 
-    public function Post(): HasMany
+    public function Post(): BelongsTo
     {
-        return $this->hasMany(post::class);
+        return $this->belongsTo(post::class);
     }
 
-    public function Surveydata(): HasMany
+    public function Surveydata(): BelongsTo
     {
-        return $this->hasMany(surveyData::class);
+        return $this->belongsTo(surveyData::class);
+    }
+
+    public function MeetingDetail(): HasMany
+    {
+        return $this->hasMany(meeting_detail::class);
+    }
+
+    public function InvitationGuest(): HasMany
+    {
+        return $this->hasMany(invitation_guest::class);
+    }
+
+    public function Attendance(): HasMany
+    {
+        return $this->hasMany(meeting_attendance::class);
     }
 }
