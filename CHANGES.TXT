@@ -1,2 +1,5 @@
 survey_data table ma email ra post_id thapiyo 
 meeting table thapiyo 
+meeting_detail table thapiyo 
+meeting_attendance table thapiyo 
+invitation_guest table thapiyo 

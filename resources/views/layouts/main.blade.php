@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{asset('css/datepicker.css')}}">
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
     <script src="{{asset('js/chartjs.min.js')}}"></script>
@@ -136,6 +137,12 @@
                                     <a href="{{ route('committee-formed.index') }}" class="nav-link @yield('meeting_committe_formed')">
                                     <i class="nav-icon fas fa-users-cog"></i>
                                         <p class="px-2">{{ __('समिति गठन') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('meeting.index') }}" class="nav-link @yield('meeting')">
+                                    <i class="nav-icon fas fa-clock"></i>
+                                        <p class="px-2">{{ __('बैठक व्यवस्थापन') }}</p>
                                     </a>
                                 </li>
                             </ul>
@@ -471,17 +478,17 @@
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script> --}}
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
+    {{-- <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    </script> --}}
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
     <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
-    {{-- <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script> --}}
+    <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
     <!-- JQVMap -->
     <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -504,6 +511,7 @@
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
+    <script src="{{ asset('js/datepicker.js') }}"></script>
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

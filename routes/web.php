@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{CommitteePostController, FiscalController, MarriageController};
+use App\Http\Controllers\meeting\MeetingController;
 use App\Http\Controllers\Report\SurveyReportController;
 use App\Http\Controllers\Setting\{ForeignCountrySettlementReasonController, PostController, RoleController};
 use App\Http\Controllers\survey\TransferController;
@@ -12,8 +13,11 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    /****************** below route is all for committe formed report****************************/
     Route::get('committe-formed/assign/{code}',[CommitteePostController::class,'assignPost'])->name('committee-formed.assign');
-    Route::resource('committee-formed', CommitteePostController::class);
+    Route::resource('committee-formed', CommitteePostController::class)->except('edit','update','show','delete','create');
+    /****************** below route is all for meeting assign****************************/
+    Route::resource('meeting',MeetingController::class);
     /****************** below route is all for survey report****************************/
     Route::get('survey-data', [SurveyReportController::class, 'index'])->name('report.survey');
     Route::post('survey-data', [SurveyReportController::class, 'report'])->name('report.survey');
