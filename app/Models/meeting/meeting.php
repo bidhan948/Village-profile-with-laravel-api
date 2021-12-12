@@ -14,6 +14,10 @@ class meeting extends Model
 {
     use HasFactory,SoftDeletes;
 
+    const OPERATE_MODE = 0;
+    const DECISION_MODE = 1;
+    const SUCCESS_MODE = 2;
+
     protected $fillable = 
     [
         'baithak_id',

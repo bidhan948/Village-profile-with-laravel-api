@@ -11,7 +11,7 @@ class meeting_detail extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['meeting_id', 'propsal', 'detail', 'decision'];
+    protected $fillable = ['meeting_id', 'proposal', 'detail', 'decision'];
 
     public function Meeting(): BelongsTo
     {

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'नया बैठक थप्नुहोस')
+@section('title', 'बैठक सच्याउनुहोस्')
 @section('menu_open_meeting', 'menu_open')
 @section('meeting_child_meeting', 'block')
 @section('meeting', 'active')
@@ -14,8 +14,9 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body" id="app">
-            <form method="post" action="{{ route('meeting.store') }}">
+            <form method="post" action="{{ route('meeting.update',$meeting) }}">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group input-group-sm">
@@ -25,22 +26,12 @@
                                     <span class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <select name="group_code"
-                                class="custom-select select2 @error('group_code') is-invalid @enderror">
+                            <select name="group_code" class="custom-select @error('group_code') is-invalid @enderror"
+                                disabled>
                                 <option value="">
-                                    {{ __('-- बैठकको समिति छान्नुहोस् --') }}
+                                    {{ Nepali($meeting->group_code) }}
                                 </option>
-                                @foreach ($groups as $group)
-                                    <option value="{{ $group }}">
-                                        {{ $group }}</option>
-                                @endforeach
                             </select>
-                            @error('group_code')
-                                <p class="invalid-feedback" style="font-size: 0.9rem">
-                                    {{ __('बैठकको समिति फिल्ड खाली छ |') }}
-                                </p>
-
-                            @enderror
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -53,8 +44,9 @@
                                         class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('dateBs') }}" placeholder="YYYY-MM-DD" name="dateBs"
-                                class="form-control  @error('dateBs') is-invalid @enderror" id="nepali_datepicker" readonly>
+                            <input type="text" value="{{ old('dateBs') }}" placeholder="{{ $meeting->dateBs }}"
+                                name="dateBs" class="form-control  @error('dateBs') is-invalid @enderror"
+                                id="nepali_datepicker" readonly>
                             @error('dateBs')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
                                     {{ __('बैठकको मितिको फिल्ड खाली छ ') }}
@@ -71,7 +63,7 @@
                                         class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('time') }}" name="time"
+                            <input type="time" value="{{ $meeting->time }}" name="time"
                                 class="form-control  @error('time') is-invalid @enderror" id="nepali_datepicker">
                             @error('time')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
@@ -89,8 +81,8 @@
                                         class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('venue') }}" name="venue"
-                                class="form-control  @error('venue') is-invalid @enderror" id="nepali_datepicker">
+                            <input type="text" value="{{ $meeting->venue }}" name="venue"
+                                class="form-control  @error('venue') is-invalid @enderror">
                             @error('venue')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
                                     {{ __('बैठकको मितिको फिल्ड खाली छ ') }}
@@ -106,7 +98,7 @@
                                 </span>
                             </div>
                             <textarea type="text" value="{{ old('subject') }}" name="subject"
-                                class="form-control  @error('subject') is-invalid @enderror"></textarea>
+                                class="form-control  @error('subject') is-invalid @enderror">{{ $meeting->subject }}</textarea>
                             @error('subject')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">
                                     {{ __('बैठकको मितिको फिल्ड खाली छ ') }}
@@ -128,23 +120,29 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">{{ __('क्र. स.') }}</th>
-                                    <th class="text-center">{{ __('प्रस्ताव') }} <span class="text-danger px-1">*</span></th>
-                                    <th class="text-center">{{ __('संक्षिप्त विवरण') }} <span class="text-danger px-1">*</span></th>
+                                    <th class="text-center">{{ __('प्रस्ताव') }} <span
+                                            class="text-danger px-1">*</span></th>
+                                    <th class="text-center">{{ __('संक्षिप्त विवरण') }} <span
+                                            class="text-danger px-1">*</span></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody id="proposal">
-                                <tr class="addProposal">
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">
-                                        <textarea name="proposal[]" id="" class="form-control-sm form-control">
-                                                                                            </textarea>
-                                    </td>
-                                    <td class="text-center">
-                                        <textarea name="detail[]" id="" class="form-control-sm form-control">
-                                                                                        </textarea>
-                                    </td>
-                                </tr>
+                                @foreach ($meeting->MeetingDetail as $key => $MeetingDetail)
+                                    <tr id="addProposal{{ $key + 1 }}">
+                                        <td class="text-center">{{ $key + 1 }}</td>
+                                        <td class="text-center">
+                                            <textarea name="proposal[]" id=""
+                                                class="form-control-sm form-control">{{ $MeetingDetail->proposal }}</textarea>
+                                        </td>
+                                        <td class="text-center">
+                                            <textarea name="detail[]" id=""
+                                                class="form-control-sm form-control">{{ $MeetingDetail->detail }}</textarea>
+                                        </td>
+                                        <td class="text-center"><i class="fas fa-trash-alt text-danger fa-2x"
+                                                onclick="removeExistencePropsal({{ $key + 1 }})"></i></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -172,7 +170,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            let i = 2;
+            let i = {{$meeting->MeetingDetail->count() +1}};
             $('.addPrposal').on("click", function() {
                 var html = '<tr id="r_proposal' + i + '">' +
                     '<td class="text-center">' + i + '</td>' +
@@ -194,8 +192,16 @@
     </script>
     <script>
         function removePropsal(a) {
-            console.log(a);
-            $("#r_proposal" + a).html("");
+            if (confirm("के तपाइँ  यसलाई हटाउन निश्चित हुनुहुन्छ ?")) {
+                $("#r_proposal" + a).html("");
+            }
+        }
+    </script>
+    <script>
+        function removeExistencePropsal(i) {
+            if (confirm("के तपाइँ  यसलाई हटाउन निश्चित हुनुहुन्छ ?")) {
+                $("#addProposal" + i).html("");
+            }
         }
     </script>
     <script>
