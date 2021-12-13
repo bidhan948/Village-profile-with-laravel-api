@@ -4,6 +4,7 @@ namespace App\Models\meeting;
 
 use App\Models\api\surveyData;
 use App\Models\Setting\post;
+use App\Models\System_setting\fiscal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -55,5 +56,10 @@ class meeting extends Model
     public function Attendance(): HasMany
     {
         return $this->hasMany(meeting_attendance::class);
+    }
+
+    public function Fiscal(): BelongsTo
+    {
+        return $this->belongsTo(fiscal::class);
     }
 }

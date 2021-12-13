@@ -11,7 +11,10 @@ class meeting_detail extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['meeting_id', 'proposal', 'detail', 'decision'];
+    const APPROVE = 1;
+    const REJECT = 0;
+
+    protected $fillable = ['meeting_id', 'proposal', 'detail', 'decision','status'];
 
     public function Meeting(): BelongsTo
     {

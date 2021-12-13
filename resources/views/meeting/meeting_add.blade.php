@@ -71,7 +71,7 @@
                                         class="text-danger px-1 font-weight-bold">*</span>
                                 </span>
                             </div>
-                            <input type="text" value="{{ old('time') }}" name="time"
+                            <input type="time" value="{{ old('time') }}" name="time"
                                 class="form-control  @error('time') is-invalid @enderror" id="nepali_datepicker">
                             @error('time')
                                 <p class="invalid-feedback" style="font-size: 0.9rem">

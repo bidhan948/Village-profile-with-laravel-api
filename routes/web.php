@@ -16,7 +16,10 @@ Route::group(['middleware' => 'auth'], function () {
     /****************** below route is all for committe formed report****************************/
     Route::get('committe-formed/assign/{code}',[CommitteePostController::class,'assignPost'])->name('committee-formed.assign');
     Route::resource('committee-formed', CommitteePostController::class)->except('edit','update','show','delete','create');
-    /****************** below route is all for meeting assign****************************/
+    /****************** below route is all for meeting ****************************/
+    // Route::get('add-decision/{meeting}',[MeetingController::class,'oprateMeeting'])->name('oprateMeeting');
+    Route::get('operate-meeting/{meeting}',[MeetingController::class,'oprateMeeting'])->name('oprateMeeting');
+    Route::post('operate-meeting/{meeting}',[MeetingController::class,'proposalApproveReject'])->name('oprateMeetingSubmit');
     Route::resource('meeting',MeetingController::class);
     /****************** below route is all for survey report****************************/
     Route::get('survey-data', [SurveyReportController::class, 'index'])->name('report.survey');

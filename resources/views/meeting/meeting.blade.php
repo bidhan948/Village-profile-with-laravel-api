@@ -42,8 +42,8 @@
                             </td>
                             <td class="text-center">
                                 @if (App\Models\meeting\meeting::OPERATE_MODE === $meeting->status)
-                                    <a class="btn btn-sm btn-primary text-white"><i
-                                            class="fas fa-paper-plane pr-2"></i>{{ __('संचालन गर्नुहोस्') }}</a>
+                                    <a href="{{route('oprateMeeting',$meeting)}}" class="btn btn-sm btn-info text-white" onclick="return confirm('कृपया संचालन सुनिस्चित गर्नुहोस्');"><i
+                                            class="fas fa-paper-plane pr-2" ></i>{{ __('संचालन गर्नुहोस्') }}</a>
                                 @elseif(App\Models\meeting\meeting::DECISION_MODE === $meeting->status)
                                     <a class="btn btn-sm btn-primary">{{ __('निर्णय थप्नुहोस्') }}</a>
                                 @else
