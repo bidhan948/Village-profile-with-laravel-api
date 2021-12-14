@@ -102,7 +102,7 @@ class MeetingController extends Controller
         return redirect()->back();
     }
 
-    /**********************Below method is all for oprate and above all method is for CRUD*******************************/
+    /**********************Below method is all for operate meeting and above all method is for CRUD*********************/
 
     public function oprateMeeting(meeting $meeting): View
     {
@@ -117,7 +117,7 @@ class MeetingController extends Controller
         return view('meeting.meeting_operate', ['meeting' => $meeting->load('MeetingDetail'), 'members' => $members]);
     }
 
-    public function proposalApproveReject(Request $request, meeting $meeting)
+    public function proposalApproveReject(Request $request, meeting $meeting, MeetingHelper $helper)
     {
         abort_if($meeting->status != meeting::OPERATE_MODE, 403);
 
@@ -128,18 +128,11 @@ class MeetingController extends Controller
 
         if ($request->has('approve')) {
 
-            $members = group_code::query()
-                ->select('id', 'survey_data_id', 'code')
-                ->where('code', $meeting->group_code)
-                ->with('surveyData.Post')
-                ->get();
-
-            $meetingCount = meeting::where('group_code', $meeting->group_code)->whereNull('deleted_at')->count() ;
-
+            $data = $helper->getMeetingFinalData($meeting);
             return view('meeting.add_decision', [
-                'meeting' => $meeting,
-                'members' => $members,
-                'meetingCount' => $meetingCount
+                'meeting' => $meeting->load('MeetingDetail'),
+                'members' => $data['members'],
+                'meetingCount' => $data['meetingCount']
             ]);
         } else {
 
@@ -150,5 +143,46 @@ class MeetingController extends Controller
             toast("प्रस्ताब रद्द गर्न सफल भयो", "success");
             return redirect()->back();
         }
+    }
+
+    public function addMorePrposal(Request $request, meeting $meeting, MeetingHelper $helper)
+    {
+        abort_if($meeting->status != meeting::OPERATE_MODE, 403);
+
+        $data = $helper->getMeetingFinalData($meeting);
+
+        if ($request->proposal[0] == '') {
+
+            Alert::error("प्रस्तावको फिल्ड खाली छ");
+            return view('meeting.add_decision', [
+                'meeting' => $meeting->load('MeetingDetail'),
+                'members' => $data['members'],
+                'meetingCount' => $data['meetingCount']
+            ]);
+        } else {
+
+            foreach ($request->proposal as $proposal) {
+                if ($proposal != '') {
+                    meeting_detail::create(
+                        [
+                            'meeting_id' => $meeting->id,
+                            'proposal' => $proposal,
+                            'status' => meeting_detail::APPROVE
+                        ]
+                    );
+                }
+            }
+        }
+
+        Alert::success("प्रस्तावको थप्न सफल भयो");
+        return view('meeting.add_decision', [
+            'meeting' => $meeting->load('MeetingDetail'),
+            'members' => $data['members'],
+            'meetingCount' => $data['meetingCount']
+        ]);
+    }
+
+    public function meetingFinalStore(): RedirectResponse
+    {
     }
 }

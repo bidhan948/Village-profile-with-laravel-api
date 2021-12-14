@@ -11,7 +11,11 @@ class invitation_guest extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable = ['meeting_id','name','status'];
+    const INVITED = 0;
+    const SPECIAL_INVITED = 1;
+    const OTHER = 2;
+
+    protected $fillable = ['meeting_id','name','status','contact_no'];
 
     public function Meeting(): BelongsTo
     {
