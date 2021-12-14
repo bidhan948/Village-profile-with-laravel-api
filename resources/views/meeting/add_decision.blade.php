@@ -42,6 +42,7 @@
                             <th class="text-center">{{ __('पद') }}</th>
                             <th class="text-center">{{ __('मोवाइल नं.') }}</th>
                             <th class="text-center">{{ __('ई-मेल') }}</th>
+                            <th class="text-center">{{ __('उपस्थिति ?') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,7 @@
                                 </td>
                                 <td class="text-center">{{ $member->surveyData->contact_no }}</td>
                                 <td class="text-center">{{ $member->surveyData->email }}</td>
+                                <td class="text-center"><input type="checkbox" value="1" name="is_present[{{$member->surveyData->id}}][]" checked></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -84,7 +86,7 @@
                                 <td class="text-center">{{ Nepali($key + 1) }}</td>
                                 <td class="text-center">{{ $meetingDetail->proposal }}</td>
                                 <td class="text-center">
-                                    <textarea name="descision[{{ $meetingDetail->id }}][]"
+                                    <textarea name="descision[{{ $meetingDetail->id }}]"
                                         class="form-control form-control-sm"></textarea>
                                 </td>
                             </tr>
@@ -122,7 +124,7 @@
                                                 <input name="name[]" id="" class="form-control-sm form-control">
                                             </td>
                                             <td class="text-center">
-                                                <input name="detail[]" id="" class="form-control-sm form-control">
+                                                <input name="contact_no[]" id="" class="form-control-sm form-control">
                                             </td>
                                             <td>
                                                 <select name="status[]" id="" class="form-control form-control-sm">
@@ -146,6 +148,7 @@
                 </div>
                 {{-- end of modal for adding relation status --}}
 
+                <button class="my-2 btn btn-sm btn-primary"><i class="fas fa-arrow-circle-up px-1"></i>{{__('सम्पादन गर्नुहोस्')}}</button>
 
             </form>
             <hr class="mt-3" width="100%">
@@ -219,9 +222,9 @@
                     '</td>' +
                     '<td>' +
                     '<select name="status[]" id="" class="form-control form-control-sm">' +
-                    '<option value="0">{{ __('आमन्त्रित') }}</option>' +
-                    '<option value="1">{{ __('बिशेस आमन्त्रित') }}</option>' +
-                    '<option value="2">{{ __('अन्य') }}</option>' +
+                    '<option value="0">{{ __("आमन्त्रित") }}</option>' +
+                    '<option value="1">{{ __("बिशेस आमन्त्रित") }}</option>' +
+                    '<option value="2">{{ __("अन्य") }}</option>' +
                     '</select>' +
                     '</td>' +
                     '<td><i class="fas fa-trash-alt text-danger" onclick="removeInvite(' + i +

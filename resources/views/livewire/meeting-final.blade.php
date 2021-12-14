@@ -11,7 +11,8 @@
             @endforeach
         </select>
     </div>
-
+    <input type="hidden" name="post_id" value="{{$post_id}}">
+    <input type="hidden" name="survey_id" value="{{ $memberName === null ? '': $memberName->surveyData->id}}">
     <div class="col-6 mb-3">
         अध्यक्षतामा {{ $memberName === null ? '...........' : $memberName->surveyData->name}} बसि निम्न प्रस्तावहरु उपर छलफल गरी निम्न निर्णयमा पुगि समाप्त गरियो ।
     </div>

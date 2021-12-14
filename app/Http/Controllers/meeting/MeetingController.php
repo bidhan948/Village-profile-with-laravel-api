@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MeetingSubmitRequest;
 use App\Http\Requests\MeetingUpdateRequest;
 use App\Models\group_code;
+use App\Models\meeting\invitation_guest;
 use App\Models\meeting\meeting;
+use App\Models\meeting\meeting_attendance;
 use App\Models\meeting\meeting_detail;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -182,7 +184,68 @@ class MeetingController extends Controller
         ]);
     }
 
-    public function meetingFinalStore(): RedirectResponse
+    public function meetingFinalStore(Request $request, meeting $meeting, MeetingHelper $helper)
     {
+        abort_if($meeting->status != meeting::OPERATE_MODE, 403);
+        $data = $helper->getMeetingFinalData($meeting);
+        if ($request->post_id == '') {
+
+            Alert::error("बैठकमा बस्ने पदाधकारी अनिवार्य छ");
+            return view('meeting.add_decision', [
+                'meeting' => $meeting->load('MeetingDetail'),
+                'members' => $data['members'],
+                'meetingCount' => $data['meetingCount']
+            ]);
+        }
+
+        // this is for attendance of committe
+        foreach ($data['members'] as $key => $member) {
+            if (!array_key_exists($member->surveyData->id, $request->is_present)) {
+                meeting_attendance::create(
+                    [
+                        'meeting_id' => $meeting->id,
+                        'survey_data_id' => $member->surveyData->id,
+                        'is_present' => meeting_attendance::ABSENT
+                    ]
+                );
+            } else {
+                meeting_attendance::create(
+                    [
+                        'meeting_id' => $meeting->id,
+                        'survey_data_id' => $member->surveyData->id,
+                        'is_present' => meeting_attendance::PRESENT
+                    ]
+                );
+            }
+        }
+
+        foreach ($request->descision as $meeting_id => $decision) {
+            meeting_detail::where('id', $meeting_id)->update(['decision' => $decision]);
+        }
+
+        foreach ($request->name as $key => $name) {
+            if ($name != "") {
+
+                invitation_guest::create(
+                    [
+                        'meeting_id' => $meeting->id,
+                        'name' => $name,
+                        'status' => $request->status[$key],
+                        'contact_no' => $request->contact_no[$key]
+                    ]
+                );
+            }
+        }
+
+        $meeting->update(
+            [
+                'survey_data_id' => $request->survey_id,
+                'post_id' => $request->post_id,
+                'status' => meeting::SUCCESS_MODE
+            ]
+        );
+
+        toast("बैठक सम्पन्न भयो","success");
+        return redirect()->route('meeting.index');
     }
 }

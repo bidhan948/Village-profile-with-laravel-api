@@ -17,7 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('committe-formed/assign/{code}',[CommitteePostController::class,'assignPost'])->name('committee-formed.assign');
     Route::resource('committee-formed', CommitteePostController::class)->except('edit','update','show','delete','create');
     /****************** below route is all for meeting ****************************/
-    Route::get('submitDecision/{meeting}',[MeetingController::class,'meetingFinalStore'])->name('meeting_finish');
+    Route::post('submitDecision/{meeting}',[MeetingController::class,'meetingFinalStore'])->name('meeting_finish');
     Route::post('Proposal/{meeting}',[MeetingController::class,'addMorePrposal'])->name('addMorePrposal');
     Route::get('operate-meeting/{meeting}',[MeetingController::class,'oprateMeeting'])->name('oprateMeeting');
     Route::post('operate-meeting/{meeting}',[MeetingController::class,'proposalApproveReject'])->name('oprateMeetingSubmit');

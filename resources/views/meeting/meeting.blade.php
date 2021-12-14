@@ -47,7 +47,8 @@
                                 @elseif(App\Models\meeting\meeting::DECISION_MODE === $meeting->status)
                                     <a class="btn btn-sm btn-primary">{{ __('निर्णय थप्नुहोस्') }}</a>
                                 @else
-                                    <a class="btn btn-sm btn-primary">{{ __('सम्पन्न गरियो') }}</a>
+                                    <a class="btn btn-sm btn-primary text-white"><i
+                                        class="fas fa-check-circle pr-2" ></i>{{ __('सम्पन्न गरियो') }}</a>
                                 @endif
                             </td>
                             <td class="text-center">
@@ -59,7 +60,7 @@
                                                                                                                     document.getElementById('delete_meeting{{ $key + 1 }}').submit();">
                                         <i class="fas fa-trash-alt px-2"></i></a>
                                 @else
-                                    <a class="btn btn-sm btn-primary"><i
+                                    <a class="btn btn-sm btn-primary text-white"><i
                                             class="fas fa-eye px-1"></i>{{ __('View minute') }}</a>
                                 @endif
                             </td>

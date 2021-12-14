@@ -16,8 +16,8 @@ class meeting extends Model
     use HasFactory,SoftDeletes;
 
     const OPERATE_MODE = 0;
-    const DECISION_MODE = 1;
-    const SUCCESS_MODE = 2;
+    const DECISION_MODE = 2;
+    const SUCCESS_MODE = 1;
 
     protected $fillable = 
     [
